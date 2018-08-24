@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  tab = 3;
+  tab = 0;
 
   onTabChange (e) {
   }

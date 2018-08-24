@@ -1,0 +1,12 @@
+<div class="container vertical-center">
+    <form class="example-container">
+        <h3 class="mb-4 mt-3">{{data.domain}}</h3>
+        <mat-form-field>
+            <input matInput placeholder="IP address" name="user">
+        </mat-form-field>
+        <div class="mt-4">
+            <button (click)="onSelectCurrentIP()" mat-raised-button color="" class="float-left">Get current IP</button>
+            <button (click)="onSave()" mat-raised-button color="primary" class="float-right">Save</button>
+        </div>
+    </form>
+</div>

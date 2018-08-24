@@ -11,7 +11,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatDatepickerModule} from '@angular/material/datepicker';
-import {MatNativeDateModule} from '@angular/material';
+import {MatNativeDateModule, MatDialogModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
@@ -20,6 +20,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { DomainsComponent } from './domains/domains.component';
+import { DialogContentExampleDialogComponent } from './domains/domain-diaglog.component';
 import { NewDomainComponent } from './new-domain/new-domain.component';
 import { InstructionsComponent } from './instructions/instructions.component';
 @NgModule({
@@ -29,6 +30,7 @@ import { InstructionsComponent } from './instructions/instructions.component';
     DomainsComponent,
     NewDomainComponent,
     InstructionsComponent,
+    DialogContentExampleDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,7 +53,9 @@ import { InstructionsComponent } from './instructions/instructions.component';
     MatTabsModule,
     MatButtonToggleModule,
     MatChipsModule,
+    MatDialogModule,
   ],
+  entryComponents: [DialogContentExampleDialogComponent],
   providers: [],
   bootstrap: [AppComponent]
 })
