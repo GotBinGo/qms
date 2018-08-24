@@ -1,3 +1,14 @@
-<mat-card class="mt-5 mb-3 container vertical-center" style="max-width: 600px;">
-hello
-</mat-card>
+<mat-tab-group (selectedTabChange)="onTabChange($event)" [selectedIndex]="tab" class="demo-tab-group" dynamicHeight>
+  <mat-tab label="My domains">
+    <app-domains></app-domains>
+  </mat-tab>
+  <mat-tab label="New domain">
+    <app-new-domain></app-new-domain>
+  </mat-tab>
+  <mat-tab label="Instruction">
+    <app-instructions></app-instructions>
+  </mat-tab>
+  <mat-tab label="Login">
+      <app-login (setTab)="setTab($event)"></app-login>
+  </mat-tab>
+</mat-tab-group>

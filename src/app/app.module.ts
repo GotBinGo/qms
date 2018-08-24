@@ -18,9 +18,17 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatTabsModule} from '@angular/material/tabs';
 import { AppComponent } from './app.component';
+import { LoginComponent } from './login/login.component';
+import { DomainsComponent } from './domains/domains.component';
+import { NewDomainComponent } from './new-domain/new-domain.component';
+import { InstructionsComponent } from './instructions/instructions.component';
 @NgModule({
   declarations: [
     AppComponent,
+    LoginComponent,
+    DomainsComponent,
+    NewDomainComponent,
+    InstructionsComponent,
   ],
   imports: [
     BrowserModule,

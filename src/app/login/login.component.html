@@ -1,0 +1,31 @@
+<mat-card class="mt-4 mb-3 container vertical-center" style="max-width: 600px;">
+    <form *ngIf="!register" ngSubmit="emailLogin()" class="example-container">
+        <h3 class="mb-3 mt-3">Email Login</h3>
+        <mat-form-field>
+            <input matInput placeholder="Email" name="user">
+        </mat-form-field>
+        <mat-form-field>
+            <input type="password" matInput placeholder="Password" name="password">
+        </mat-form-field>
+        <div class="mt-2">
+            <button (click)="register = true" mat-raised-button color="" class="float-left">Join now</button>
+            <button (click)="onLogin()" mat-raised-button color="primary" class="float-right">Log In</button>
+        </div>
+    </form>
+    <form *ngIf="register" ngSubmit="emailLogin()" class="example-container">
+        <h3 class="mb-3 mt-3">Email Register</h3>
+        <mat-form-field>
+            <input matInput placeholder="Email" name="user">
+        </mat-form-field>
+        <mat-form-field>
+            <input type="password" matInput placeholder="Password" name="password">
+        </mat-form-field>
+        <mat-form-field>
+                <input matInput placeholder="Display name" name="display_name">
+        </mat-form-field>
+        <div>
+            <button (click)="register = false" mat-raised-button color="" class="float-left">Already signed up</button>
+            <button (click)="onRegister()" mat-raised-button color="primary" class="float-right">Register</button>
+        </div>
+    </form>
+</mat-card>

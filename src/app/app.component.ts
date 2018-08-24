@@ -6,5 +6,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'dyn';
+  tab = 3;
+
+  onTabChange (e) {
+  }
+
+  setTab(p) {
+    this.tab = p;
+  }
 }
