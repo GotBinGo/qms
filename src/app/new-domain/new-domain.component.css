@@ -18,9 +18,9 @@ mat-card {
 .oszlop-sajat-bal {
     position: relative;
     width: 48%;
+    float: left;
     min-height: 1px;    
     padding-left: 15px;
-    padding-right:5px; 
 }
 
 .input{
@@ -28,6 +28,7 @@ mat-card {
 }
 
 .elvalasztopont{
-    width:10px;
-    font-weight: bold;
+    width:5px;
+    padding-right:-5px;
+    padding-left:-5px; 
 }

@@ -6,9 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./new-domain.component.css']
 })
 export class NewDomainComponent implements OnInit {
-
   constructor() { }
+  dot = '.';
 
   ngOnInit() {
+  }
+
+  onChange(e) {
+    e.preventDefault();
   }
 }
