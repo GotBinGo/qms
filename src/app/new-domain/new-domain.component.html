@@ -7,14 +7,14 @@
         <div class="col-8">
           <div class="row">
             <mat-form-field class="oszlop-sajat-bal" >
-              <input class="input" matInput placeholder="Subdomain" name="user">                                  
+              <input tabindex="0" class="input" matInput placeholder="Subdomain" name="user">                                  
             </mat-form-field>
             <mat-form-field class="elvalasztopont" >
-                <input matInput [(ngModel)]="dot" name="dot" (keydown)="onChange($event)">                         
+                <input tabindex="-1" matInput [(ngModel)]="dot" name="dot" (keydown)="onChange($event)">                         
             </mat-form-field>  
             <mat-form-field class="oszlop-sajat-jobb">
               <mat-select placeholder="Domain ending">            
-                <mat-option *ngFor="let x of ['dyndns.hu', 'ali.hu', 'baromsag.hu']" [value]="0">
+                <mat-option tabindex="0" *ngFor="let x of ['dyndns.hu', 'ali.hu', 'baromsag.hu']" [value]="0">
                   {{x}}
                 </mat-option>
               </mat-select>
@@ -23,7 +23,7 @@
         </div>
       </div>
       <div>
-          <button (click)="onLogin()" mat-raised-button color="primary" class="float-right">Save</button>
+          <button (click)="onSave()" mat-raised-button color="primary" class="float-right">Save</button>
       </div>
     </form>
   </mat-card>

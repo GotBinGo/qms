@@ -15,4 +15,7 @@ export class NewDomainComponent implements OnInit {
   onChange(e) {
     e.preventDefault();
   }
+
+  onSave() {
+  }
 }

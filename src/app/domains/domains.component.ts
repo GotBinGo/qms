@@ -18,7 +18,7 @@ export class DomainsComponent implements OnInit {
     setTimeout(() => {
       const dialogRef = this.dialog.open(DialogContentExampleDialogComponent,
       { data: { domain },
-        position: { top: '100px' },
+        position: { top: '50px' },
         width: '600px'
       });
     });
