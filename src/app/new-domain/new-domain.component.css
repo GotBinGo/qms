@@ -8,16 +8,16 @@ mat-card {
     flex-direction: column;
 }
 
-.oszlop-sajat-bal {
+.oszlop-sajat-jobb {
     position: relative;
-    width: 45%;
+    width: 48%;
     min-height: 1px;
     padding-right: 15px;
 }
 
-.oszlop-sajat-jobb {
+.oszlop-sajat-bal {
     position: relative;
-    width: 45%;
+    width: 48%;
     min-height: 1px;    
     padding-left: 15px;
     padding-right:5px; 

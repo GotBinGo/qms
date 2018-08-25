@@ -1,17 +1,17 @@
 <div class="mt-4">
   <mat-card class="mt-1 vertical-center" style="max-width: 800px;">
     <form  ngSubmit="emailLogin()" class="example-container">
-      <h3 class="mb-3 mt-3">Name</h3>
+      <h3 class="mb-3 mt-3">New domain name</h3>
       <div class="row">        
-        <mat-form-field class="oszlop-sajat-jobb" >
-          <input class="input" matInput placeholder="Name" name="user">                                  
+        <mat-form-field class="oszlop-sajat-bal" >
+          <input class="input" matInput placeholder="Subdomain" name="user">                                  
         </mat-form-field>  
         <mat-form-field class="elvalasztopont" >
             <input matInput value="." disabled >                                  
         </mat-form-field>  
-        <mat-form-field class="oszlop-sajat-bal">
+        <mat-form-field class="oszlop-sajat-jobb">
           <mat-select placeholder="Domain ending">            
-            <mat-option *ngFor="let x of ['hu', 'com', 'eu']" [value]="0">
+            <mat-option *ngFor="let x of ['dyndns.hu', 'ali.hu', 'baromsag.hu']" [value]="0">
               {{x}}
             </mat-option>
           </mat-select>
