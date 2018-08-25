@@ -2,3 +2,32 @@ mat-card {
     width: 95%;
     margin: auto;
 }
+
+.example-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.oszlop-sajat-jobb {
+    position: relative;
+    width: 48%;
+    min-height: 1px;
+    padding-right: 15px;
+}
+
+.oszlop-sajat-bal {
+    position: relative;
+    width: 48%;
+    min-height: 1px;    
+    padding-left: 15px;
+    padding-right:5px; 
+}
+
+.input{
+    text-align: right;    
+}
+
+.elvalasztopont{
+    width:10px;
+    font-weight: bold;
+}
