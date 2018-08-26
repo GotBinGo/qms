@@ -1,0 +1,7 @@
+{
+  "/api": {
+    "target": "http://dyndns.hipernet.hu",
+    "secure": false,
+    "changeOrigin": true
+  }
+}
