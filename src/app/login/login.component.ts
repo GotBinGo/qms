@@ -1,4 +1,5 @@
 import { Component, OnInit, setTestabilityGetter, Output, EventEmitter } from '@angular/core';
+import { LoginService } from '../login.service';
 
 @Component({
   selector: 'app-login',
@@ -9,14 +10,23 @@ export class LoginComponent implements OnInit {
 
   register = false;
   @Output() setTab = new EventEmitter<number>();
+  @Output() login = new EventEmitter<void>();
 
-  constructor() { }
+  username = '';
+  password = '';
+  constructor(private loginService: LoginService) { }
 
   ngOnInit() {
   }
 
   onLogin() {
-    this.setTab.emit(0);
+    this.loginService.login(this.username, this.password).subscribe((res) => {
+      if (res === 'good') {
+        this.setTab.emit(0);
+        this.login.emit();
+      } else {
+      }
+    });
   }
 
   onRegister() {

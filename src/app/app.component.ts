@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -6,12 +7,18 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  tab = 0;
+  tab = 3;
+  loginSubject: Subject<void> = new Subject<void>();
 
   onTabChange (e) {
+    this.tab = e.index;
   }
 
   setTab(p) {
     this.tab = p;
+  }
+
+  login(e) {
+    this.loginSubject.next();
   }
 }

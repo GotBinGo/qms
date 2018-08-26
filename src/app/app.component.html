@@ -3,7 +3,7 @@
     <ng-template mat-tab-label>
       <div class="nav-bar-label">My domains</div>      
     </ng-template>
-    <app-domains></app-domains>
+    <app-domains [loginEvent]="loginSubject.asObservable()"></app-domains>
   </mat-tab>
   <mat-tab>
     <ng-template mat-tab-label>
@@ -13,7 +13,7 @@
   </mat-tab>
   <mat-tab label="Instruction">
     <ng-template mat-tab-label>
-      <div class="nav-bar-label">Instruction</div>
+      <div class="nav-bar-label">Instructions</div>
     </ng-template>
     <app-instructions></app-instructions>
   </mat-tab>
@@ -21,6 +21,6 @@
     <ng-template mat-tab-label>
       <div class="nav-bar-label">Login</div>
     </ng-template>
-    <app-login (setTab)="setTab($event)"></app-login>
+    <app-login (setTab)="setTab($event)" (login)="login($event)"></app-login>
   </mat-tab>
 </mat-tab-group>

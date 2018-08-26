@@ -1,12 +1,15 @@
 <div class="container vertical-center">
     <form class="example-container">
-        <h3 class="mb-4 mt-3">{{data.domain}}</h3>
+        <h3 class="mb-4 mt-3">{{data.domain.name + "." + data.domain.domain}}</h3>
         <mat-form-field>
-            <input matInput placeholder="IP address" name="user">
+            <input (keyup.enter)="onSave()" [(ngModel)]="ip" matInput placeholder="IP address" name="ip-field">
+            <mat-hint *ngIf="error">
+                {{error}}
+            </mat-hint>
         </mat-form-field>
         <div class="mt-4">
-            <button (click)="onSelectCurrentIP()" mat-raised-button color="" class="float-left">Get current IP</button>
             <button (click)="onSave()" mat-raised-button color="primary" class="float-right">Save</button>
+            <button (click)="onSelectCurrentIP()" mat-raised-button color="" class="float-left">Get current IP</button>
         </div>
     </form>
 </div>
