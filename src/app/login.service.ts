@@ -27,4 +27,8 @@ export class LoginService {
   currentIP() {
     return this.http.get('../api/ip.php', {responseType: 'text'});
   }
+
+  endings() {
+    return this.http.get<any[]>('../api/endings.php');
+  }
 }

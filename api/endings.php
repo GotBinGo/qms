@@ -14,7 +14,7 @@ if(!isset($_SESSION["user"]))
   exit;
 }
 
-$result = mysqli_query($conn, "SELECT domain.domain FROM domain");		
+$result = mysqli_query($conn, "SELECT domain.domain, domain.id FROM domain");		
 $rows = array();
 while($r = mysqli_fetch_assoc($result)) {
     $rows[] = $r;

@@ -7,15 +7,15 @@
         <div class="col-8">
           <div class="row">
             <mat-form-field class="oszlop-sajat-bal" >
-              <input tabindex="0" class="input" matInput placeholder="Subdomain" name="user">                                  
+              <input [(ngModel)]="name" tabindex="0" class="input" matInput placeholder="Subdomain" name="user">                                  
             </mat-form-field>
             <mat-form-field class="elvalasztopont" >
                 <input tabindex="-1" matInput [(ngModel)]="dot" name="dot" (keydown)="onChange($event)">                         
             </mat-form-field>  
             <mat-form-field class="oszlop-sajat-jobb">
-              <mat-select placeholder="Domain ending">            
-                <mat-option tabindex="0" *ngFor="let x of ['dyndns.hu', 'ali.hu', 'baromsag.hu']" [value]="0">
-                  {{x}}
+              <mat-select [formControl]="endingControl" placeholder="Domain ending">            
+                <mat-option tabindex="0" *ngFor="let x of domains" [value]="x">
+                  {{x.domain}}
                 </mat-option>
               </mat-select>
             </mat-form-field>
