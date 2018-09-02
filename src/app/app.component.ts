@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { LoginService } from './login.service';
 
@@ -7,12 +7,17 @@ import { LoginService } from './login.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   tab = 3;
   loginSubject: Subject<void> = new Subject<void>();
   isLogin = false;
 
   constructor(private loginService: LoginService) {
+  }
+
+  ngOnInit() {
+    this.login(1);
+    this.tab = 0;
   }
 
   onTabChange (e) {

@@ -17,6 +17,13 @@ export class LoginComponent implements OnInit {
   constructor(private loginService: LoginService) { }
 
   ngOnInit() {
+    /*
+    this.loginService.isLogin().subscribe(res => {
+      this.setTab.emit(0);
+      this.login.emit();
+    });
+    // gotta go fast
+    */
   }
 
   onLogin() {

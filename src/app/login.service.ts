@@ -12,6 +12,10 @@ export class LoginService {
     return this.http.get<any>('../api/login.php?username=' + username + '&password=' + password);
   }
 
+  isLogin() {
+    return this.http.get<any>('../api/islogin.php');
+  }
+
   logout() {
     return this.http.get<any>('../api/logout.php');
   }
