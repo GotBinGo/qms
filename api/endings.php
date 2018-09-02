@@ -13,9 +13,8 @@ if(!isset($_SESSION["user"]))
   echo "not logged in";
   exit;
 }
-$userid = $_SESSION["user"];
 
-$result = mysqli_query($conn, "SELECT domainnevek.name, domain.domain, domainnevek.ip FROM domainnevek JOIN domain ON domainnevek.domain_id = domain.id WHERE domainnevek.user_id = '$userid'");		
+$result = mysqli_query($conn, "SELECT domain.domain FROM domain");		
 $rows = array();
 while($r = mysqli_fetch_assoc($result)) {
     $rows[] = $r;
