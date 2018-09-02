@@ -6,3 +6,8 @@
 input {
     width: 100%;
 }
+
+mat-card {
+    width: 95%;
+    margin: auto;
+}
