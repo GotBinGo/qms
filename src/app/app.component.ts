@@ -10,14 +10,22 @@ import { LoginService } from './login.service';
 export class AppComponent implements OnInit {
   tab = 3;
   loginSubject: Subject<void> = new Subject<void>();
-  isLogin = false;
+  isLogin = true;
 
   constructor(private loginService: LoginService) {
   }
 
   ngOnInit() {
-    this.login(1);
-    this.tab = 0;
+    this.onTabChange(1);
+    this.loginService.isLogin().subscribe(x => {
+      this.isLogin = x;
+      if (x) {
+        this.login(1);
+        this.tab = 0;
+      } else {
+        this.tab = 1;
+      }
+    });
   }
 
   onTabChange (e) {
