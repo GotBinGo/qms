@@ -15,14 +15,6 @@ mat-card {
     padding-right: 15px;
 }
 
-.oszlop-sajat-bal {
-    position: relative;
-    width: 48%;
-    float: left;
-    min-height: 1px;    
-    padding-left: 15px;
-}
-
 .input{
     text-align: right;    
 }

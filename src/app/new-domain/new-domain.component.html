@@ -1,29 +1,20 @@
 <div class="mt-4">
   <mat-card class="mt-1 vertical-center" style="max-width: 800px;">
     <form  ngSubmit="emailLogin()" class="example-container">
-      <h3 class="mb-5 mt-3">New domain name</h3>
+      <h3 class="mb-5 mt-3">Get a Bubi</h3>
       <div class="row">
         <div class="col-md-2 "></div>
         <div class="col-md-8">
           <div class="row">
-            <mat-form-field class="oszlop-sajat-bal" >
-              <input [(ngModel)]="name" tabindex="0" class="input" matInput placeholder="Subdomain" name="user">                                  
-            </mat-form-field>
-            <mat-form-field class="elvalasztopont" >
-                <input tabindex="-1" matInput [(ngModel)]="dot" name="dot" (keydown)="onChange($event)">                         
-            </mat-form-field>  
-            <mat-form-field class="oszlop-sajat-jobb">
-              <mat-select [formControl]="endingControl" placeholder="Domain ending">            
-                <mat-option tabindex="0" *ngFor="let x of domains" [value]="x">
-                  {{x.domain}}
-                </mat-option>
-              </mat-select>
+            <div class="col-3"></div>
+            <mat-form-field class="col-6">
+              <input [(ngModel)]="name" tabindex="0" matInput placeholder="Bike Code" name="user">                                  
             </mat-form-field>
           </div>      
         </div>
       </div>
       <div>
-          <button (click)="onSave()" mat-raised-button color="primary" class="float-right">Save</button>
+          <button (click)="onUnlock()" mat-raised-button color="primary" class="float-right">Unlock</button>
       </div>
     </form>
   </mat-card>

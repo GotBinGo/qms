@@ -1,8 +1,0 @@
-<div class="mt-4">
-  <mat-card (click)="onDomainClick(domain)" *ngFor="let domain of domains" class="mt-1 vertical-center" style="max-width: 800px;">
-    <div class="row">
-      <div class="col-6">{{ domain.name + "." + domain.domain }}</div>
-      <div class="col-6"><span class="float-right">{{domain.ip}}</span></div>
-    </div>
-  </mat-card>
-</div>

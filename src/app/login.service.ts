@@ -20,19 +20,8 @@ export class LoginService {
     return this.http.get<any>('../api/logout.php');
   }
 
-  domains() {
-    return this.http.get<any>('../api/domains.php');
+  getBike(code) {
+    return this.http.get<any>('../api/getBike.php?code=' + code);
   }
 
-  update(hostname, ip) {
-    return this.http.get('../api/upd_sess.php?hostname=' + hostname + '&myip=' + ip, {responseType: 'text'});
-  }
-
-  currentIP() {
-    return this.http.get('../api/ip.php', {responseType: 'text'});
-  }
-
-  endings() {
-    return this.http.get<any[]>('../api/endings.php');
-  }
 }

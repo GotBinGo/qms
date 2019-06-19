@@ -1,7 +1,13 @@
 <mat-tab-group (selectedTabChange)="onTabChange($event)" [selectedIndex]="tab" class="demo-tab-group" dynamicHeight>
   <mat-tab *ngIf="isLogin">
     <ng-template mat-tab-label>
-      <div class="nav-bar-label">New domain</div>
+      <div class="nav-bar-label">Get a Bike</div>
+    </ng-template>
+    <app-new-domain></app-new-domain>
+  </mat-tab>
+  <mat-tab *ngIf="isLogin">
+    <ng-template mat-tab-label>
+      <div class="nav-bar-label">History</div>
     </ng-template>
     <app-new-domain></app-new-domain>
   </mat-tab>

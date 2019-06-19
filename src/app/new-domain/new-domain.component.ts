@@ -10,22 +10,21 @@ import { FormControl } from '@angular/forms';
 export class NewDomainComponent implements OnInit {
   constructor(private loginService: LoginService) { }
   dot = '.';
-  domains = [];
   endingControl = new FormControl('');
   name = '';
 
   ngOnInit() {
-    this.loginService.endings().subscribe(x => {
-      this.domains = x;
-    });
   }
 
   onChange(e) {
     e.preventDefault();
   }
 
-  onSave() {
+  onUnlock() {
     console.log(this.endingControl.value);
+    this.loginService.getBike(this.endingControl.value).subscribe(x => {
+      console.log(x);
+    });
     console.log(this.name);
   }
 }
