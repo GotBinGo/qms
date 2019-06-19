@@ -1,12 +1,6 @@
 <mat-tab-group (selectedTabChange)="onTabChange($event)" [selectedIndex]="tab" class="demo-tab-group" dynamicHeight>
   <mat-tab *ngIf="isLogin">
     <ng-template mat-tab-label>
-      <div class="nav-bar-label">My domains</div>      
-    </ng-template>
-    <app-domains [loginEvent]="loginSubject.asObservable()"></app-domains>
-  </mat-tab>
-  <mat-tab *ngIf="isLogin">
-    <ng-template mat-tab-label>
       <div class="nav-bar-label">New domain</div>
     </ng-template>
     <app-new-domain></app-new-domain>

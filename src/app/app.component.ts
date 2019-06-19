@@ -8,7 +8,7 @@ import { LoginService } from './login.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  tab = 3;
+  tab = 2;
   loginSubject: Subject<void> = new Subject<void>();
   isLogin = true;
 
@@ -30,9 +30,10 @@ export class AppComponent implements OnInit {
 
   onTabChange (e) {
     this.tab = e.index;
-    if (e.index === 3) {
+    if (e.index === 2) {
       this.loginService.logout().subscribe(x => {
         this.isLogin = false;
+        console.log('logged out');
         this.loginSubject.next();
       });
     }
