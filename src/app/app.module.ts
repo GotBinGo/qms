@@ -21,12 +21,14 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { NewDomainComponent } from './new-domain/new-domain.component';
 import { InstructionsComponent } from './instructions/instructions.component';
+import { HistoryComponent } from './history/history.component';
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     NewDomainComponent,
     InstructionsComponent,
+    HistoryComponent,
   ],
   imports: [
     BrowserModule,

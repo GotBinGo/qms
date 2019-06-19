@@ -1,0 +1,9 @@
+mat-card {
+    width: 95%;
+    margin: auto;
+}
+
+.example-container {
+    display: flex;
+    flex-direction: column;
+}
