@@ -1,3 +1,5 @@
+var http = require('https');
+
 function createState(inProgress) {
     return { inProgress }
 }
@@ -13,54 +15,51 @@ function getConcurrentCount(states) {
 }
 
 function scrape() {
-    console.log('sc');
-    var url = require('url');
-    var http = require('https');
-    var endpoint = 'https://bubi.nextbike.net/iframe/';
-    var opts = url.parse(endpoint);
-    opts.method = 'GET';
-    opts.host = "bubi.nextbike.net"
-    opts.path = "/iframe/"
-    opts.headers = {
-        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
-        'Accept-Encoding': 'gzip, deflate, br',
-        'Accept-Language': 'hu-HU,hu;q=0.9,en-US;q=0.8,en;q=0.7,nl;q=0.6',
-        'Cache-Control': 'no-cache',
-        'Connection': 'keep-alive',
-        'Cookie': 'PHPSESSID=d089e777741ce0eb9b87d70f9dbb5fec',
-        'Host': 'bubi.nextbike.net',
-        'Pragma': 'no-cache',
-        'Upgrade-Insecure-Requests': '1'
-    }
-    var options = { 
-        hostname: 'example.com',
-        path: '/somePath.php',
-        method: 'GET',
-        headers: {'Cookie': 'myCookie=myvalue'}
-    };
-    var results = ''; 
-    var req = http.request(opts, function(res) {
-        res.on('data', function (chunk) {
-            results = results + chunk;
-            
-        }); 
-        res.on('end', function () {
-            console.log(results);
-        }); 
-    });    
-    req.on('error', function(e) {
-    });    
-    req.end();
+    return new Promise(function (resolve, reject) {
+        var opts = {
+            method: 'GET',
+            host: 'bubi.nextbike.net',
+            path: '/iframe/',
+            headers: { 'Cookie': 'PHPSESSID=d089e777741ce0eb9b87d70f9dbb5fec'}
+        };
+        var results = '';    
+        var req = http.request(opts, function(res) {
+            res.on('data', function (chunk) {
+                results = results + chunk;
+            }); 
+            res.on('end', function () {
+                const table = results.split('<table')[1].split('/table')[0];
+                rows = table.split('<tr').map(x => x.split('td').filter((x, i) => [1, 3].includes(i)).map(x => x.split('>')[1].split('<')[0]))
+                rows.shift()
+                rows.shift()
+                rows.shift()
+                rows.shift()
+                rows.shift()
+                rows.pop()
+                rows = rows.map(x => { 
+                    ret = {};
+                    ret.start = x[0];
+                    const sp = x[1].split(' ')
+                    ret.bike = sp[1]
+                    ret.end = sp[3]
+                    sp.shift()
+                    sp.shift()
+                    sp.shift()
+                    sp.shift()
+                    ret.route = sp.join(' ')
+                    return ret;
+                })
+                resolve(rows);
+            }); 
+        });    
+        req.on('error', function(e) {
+            reject(e);
+        });    
+        req.end();
+    })
 
-    // http.request(options, function (res) {
-    //     console.log(res.statusCode);
-    //     res.on('data', function (chunk) {
-    //         results = results + chunk;
-    //     }); 
-    //     res.on('end', function () {
-    //         console.log('end');
-    //     }); 
-    // });
 }
-scrape();
+scrape().then(x => {
+    console.log(x);
+});
 // console.log(getConcurrentCount(getLatest()))
