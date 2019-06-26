@@ -3,6 +3,7 @@
 const express = require('express')
 const router = express.Router()
 const authController = require('../../controllers/auth.controller')
+const eventController = require('../../controllers/event.controller')
 const validator = require('express-validation')
 const { create } = require('../../validations/user.validation')
 const auth = require('../../middlewares/authorization')
@@ -23,9 +24,6 @@ router.get('/secret2', auth(['admin']), (req, res) => {
   // example route for auth
   res.json({ message: 'Only admin can access' })
 })
-router.get('/history', auth(['user']), (req, res) => {
-  // example route for auth
-  res.json(['sadfdse3r', 'gff', 'asdfsadfds'])
-})
+router.get('/history', auth(['user']), eventController.history)
 
 module.exports = router

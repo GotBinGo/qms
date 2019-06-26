@@ -13,10 +13,9 @@ export class HistoryComponent implements OnInit {
   history = [];
 
   ngOnInit() {
-    this.loginService.onHistoryChange.subscribe(x => {
-      this.history = x;
+    this.loginService.onHistoryChange.subscribe(res => {
+      this.history = res;
     });
-
   }
 
 }
