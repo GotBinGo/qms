@@ -19,8 +19,8 @@ const requestHandler = (req, response) => {
         getBike(response, url_parts.query.code);
     } else if (name == 'logout') {
         response.end('')
-    } else if (name == 'endings') {
-        response.end('list')
+    } else if (name == 'history') {
+        response.end('["afad", "gdgd"]');
     } 
 }
 

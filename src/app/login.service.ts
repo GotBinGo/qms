@@ -24,4 +24,8 @@ export class LoginService {
     return this.http.get<any>('../api/getBike.php?code=' + code);
   }
 
+  getHistory() {
+    return this.http.get<any>('../api/history');
+  }
+
 }

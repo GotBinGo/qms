@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginService } from '../login.service';
 
 @Component({
   selector: 'app-history',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HistoryComponent implements OnInit {
 
-  constructor() { }
+  constructor(private loginService: LoginService) { }
+
+  history = [];
 
   ngOnInit() {
+    this.loginService.getHistory().subscribe(x => {
+      this.history = x;
+    });
+
   }
 
 }
