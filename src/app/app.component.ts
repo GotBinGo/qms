@@ -25,6 +25,9 @@ export class AppComponent implements OnInit {
       } else {
         this.tab = 1;
       }
+    }, () => {
+      this.isLogin = false;
+      this.tab = 1;
     });
   }
 
@@ -36,6 +39,8 @@ export class AppComponent implements OnInit {
         console.log('logged out');
         this.loginSubject.next();
       });
+    } else if (e.index === 1) {
+      this.loginService.getHistory();
     }
   }
 

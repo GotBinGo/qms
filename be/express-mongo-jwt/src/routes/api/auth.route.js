@@ -10,17 +10,22 @@ const auth = require('../../middlewares/authorization')
 router.post('/register', validator(create), authController.register)
 router.post('/login', authController.login)
 
-router.get('/secret1', auth(), (req, res) => {
-  // example route for auth
-  res.json({ message: 'Anyone can access(only authorized)' })
+router.get('/isLogin', (req, res) => {
+  try {
+    auth()(req, res, (x, y, z) => {
+      res.json(!x)
+    });
+  } catch {
+    res.json(false)
+  }
 })
 router.get('/secret2', auth(['admin']), (req, res) => {
   // example route for auth
   res.json({ message: 'Only admin can access' })
 })
-router.get('/secret3', auth(['user']), (req, res) => {
+router.get('/history', auth(['user']), (req, res) => {
   // example route for auth
-  res.json({ message: 'Only user can access' })
+  res.json(['sadfdse3r', 'gff', 'asdfsadfds'])
 })
 
 module.exports = router

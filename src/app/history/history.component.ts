@@ -13,7 +13,7 @@ export class HistoryComponent implements OnInit {
   history = [];
 
   ngOnInit() {
-    this.loginService.getHistory().subscribe(x => {
+    this.loginService.onHistoryChange.subscribe(x => {
       this.history = x;
     });
 

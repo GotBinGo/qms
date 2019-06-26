@@ -2,10 +2,10 @@
     <form *ngIf="!register" ngSubmit="onLogin()" class="example-container">
         <h3 class="mb-3 mt-3">Email Login</h3>
         <mat-form-field>
-            <input matInput [(ngModel)]="username" placeholder="Username" name="user">
+            <input matInput [(ngModel)]="username" placeholder="E-mail" name="user" autocomplete="username">
         </mat-form-field>
         <mat-form-field>
-            <input type="password" [(ngModel)]="password" matInput placeholder="Password" name="password">
+            <input type="password" [(ngModel)]="password" matInput placeholder="Password" name="password" autocomplete="current-password">
         </mat-form-field>
         <div class="mt-2">
             <button (click)="onLogin()" mat-raised-button color="primary" class="float-right">Log In</button>
@@ -15,10 +15,10 @@
     <form *ngIf="register" ngSubmit="onRegister()" class="example-container">
         <h3 class="mb-3 mt-3">Email Register</h3>
         <mat-form-field>
-            <input matInput placeholder="Email" name="user">
+            <input matInput placeholder="E-mail" name="user" autocomplete="username">
         </mat-form-field>
         <mat-form-field>
-            <input type="password" matInput placeholder="Password" name="password">
+            <input type="password" matInput placeholder="Password" name="password" autocomplete="new-password">
         </mat-form-field>
         <mat-form-field>
                 <input matInput placeholder="Display name" name="display_name">

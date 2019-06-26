@@ -1,23 +1,29 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable, of, BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    this.onHistoryChange = new BehaviorSubject([]);
+  }
 
-  login(username, password) {
-    return this.http.get<any>('../api/login.php?username=' + username + '&password=' + password);
+  onHistoryChange: BehaviorSubject<any>;
+
+  login(email, password) {
+    return this.http.post<any>('../api/auth/login', {email, password});
   }
 
   isLogin() {
-    return this.http.get<any>('../api/islogin.php');
+    return this.http.get<any>('../api/auth/isLogin');
   }
 
   logout() {
-    return this.http.get<any>('../api/logout.php');
+    localStorage.token = '';
+    return of(true);
   }
 
   getBike(code) {
@@ -25,7 +31,7 @@ export class LoginService {
   }
 
   getHistory() {
-    return this.http.get<any>('../api/history');
+    return this.http.get<any>('../api/auth/history').subscribe(x => this.onHistoryChange.next(x));
   }
 
 }

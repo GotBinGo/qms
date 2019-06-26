@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import {MatCardModule} from '@angular/material/card';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
@@ -22,6 +22,7 @@ import { LoginComponent } from './login/login.component';
 import { NewDomainComponent } from './new-domain/new-domain.component';
 import { InstructionsComponent } from './instructions/instructions.component';
 import { HistoryComponent } from './history/history.component';
+import { Interceptor } from './login/interceptor';
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,7 +55,11 @@ import { HistoryComponent } from './history/history.component';
     MatDialogModule,
   ],
   entryComponents: [],
-  providers: [],
+  providers: [    {
+    provide: HTTP_INTERCEPTORS,
+    useClass: Interceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
