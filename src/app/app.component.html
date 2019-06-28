@@ -3,7 +3,9 @@
     <ng-template mat-tab-label>
       <div class="nav-bar-label">Get a Bike</div>
     </ng-template>
-    <app-new-domain></app-new-domain>
+    <ng-template matTabContent>
+      <app-new-domain [login]="isLogin"></app-new-domain>
+    </ng-template>
   </mat-tab>
   <mat-tab *ngIf="isLogin">
     <ng-template mat-tab-label>

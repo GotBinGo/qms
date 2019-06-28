@@ -23,7 +23,7 @@ import { NewDomainComponent } from './new-domain/new-domain.component';
 import { InstructionsComponent } from './instructions/instructions.component';
 import { HistoryComponent } from './history/history.component';
 import { Interceptor } from './login/interceptor';
-// import { ZXingScannerModule } from '@zxing/ngx-scanner';
+import { ZXingScannerModule } from '@zxing/ngx-scanner';
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,7 +55,7 @@ import { Interceptor } from './login/interceptor';
     MatChipsModule,
     MatDialogModule,
     MatSnackBarModule,
-    // ZXingScannerModule,
+    ZXingScannerModule,
   ],
   entryComponents: [],
   providers: [    {
