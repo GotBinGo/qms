@@ -11,7 +11,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatDatepickerModule} from '@angular/material/datepicker';
-import {MatNativeDateModule, MatDialogModule} from '@angular/material';
+import {MatNativeDateModule, MatDialogModule, MatSnackBarModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
@@ -23,6 +23,7 @@ import { NewDomainComponent } from './new-domain/new-domain.component';
 import { InstructionsComponent } from './instructions/instructions.component';
 import { HistoryComponent } from './history/history.component';
 import { Interceptor } from './login/interceptor';
+// import { ZXingScannerModule } from '@zxing/ngx-scanner';
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,6 +54,8 @@ import { Interceptor } from './login/interceptor';
     MatButtonToggleModule,
     MatChipsModule,
     MatDialogModule,
+    MatSnackBarModule,
+    // ZXingScannerModule,
   ],
   entryComponents: [],
   providers: [    {

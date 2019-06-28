@@ -39,7 +39,7 @@ export class AppComponent implements OnInit {
         console.log('logged out');
         this.loginSubject.next();
       });
-    } else if (e.index === 1) {
+    } else if (e.index === 1 && this.isLogin) {
       this.loginService.getHistory();
     }
   }

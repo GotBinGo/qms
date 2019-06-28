@@ -21,10 +21,8 @@ export class NewDomainComponent implements OnInit {
   }
 
   onUnlock() {
-    console.log(this.endingControl.value);
     this.loginService.getBike(this.endingControl.value).subscribe(x => {
       console.log(x);
     });
-    console.log(this.name);
   }
 }

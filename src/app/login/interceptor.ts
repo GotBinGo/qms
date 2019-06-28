@@ -2,31 +2,28 @@ import { Injectable } from '@angular/core';
 import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { tap, finalize, retryWhen, switchMap, take, zip, map, catchError, delay, delayWhen } from 'rxjs/operators';
+import { MatSnackBar } from '@angular/material';
 
 @Injectable()
 export class Interceptor implements HttpInterceptor {
-  constructor() {}
+  constructor(private matSnackBar: MatSnackBar) {}
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    return next.handle(this.extendRequest(req)).pipe(catchError(this.errorHandler));
+    req =  req.clone({
+      withCredentials: true,
+      headers: req.headers.append('token', localStorage.token || '')
+    });
+    return next.handle((req)).pipe(catchError(this.errorHandler));
   }
 
   extendRequest = (req: HttpRequest<any>) => {
-    const headersObj = {};
-
-    headersObj['token'] = localStorage.token;
-
-    return req.clone({
-      withCredentials: true,
-      headers: new HttpHeaders(headersObj)
-    });
   }
 
   errorHandler = (x) => {
     if (x instanceof HttpErrorResponse) {
-      console.log('HttpErrorResponse');
+      this.matSnackBar.open(x.error.message, '', { duration: 2000 });
     } else {
-      console.log('not HttpErrorResponse');
+      console.log('not HttpErrorResponse', x);
     }
-    return throwError('');
+    throw('Network Error');
   }
 }
