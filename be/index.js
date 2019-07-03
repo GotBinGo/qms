@@ -1,4 +1,5 @@
 var http = require('https');
+var fs = require('fs');
 
 function createState(inProgress) {
     return { inProgress }
@@ -20,7 +21,7 @@ function scrape() {
             method: 'GET',
             host: 'bubi.nextbike.net',
             path: '/iframe/',
-            headers: { 'Cookie': 'PHPSESSID=d089e777741ce0eb9b87d70f9dbb5fec'}
+            headers: { 'Cookie': 'parameters[dlkey]=3Qb4JvI9RI1VLyit'}
         };
         var results = '';    
         var req = http.request(opts, function(res) {
@@ -66,9 +67,40 @@ function scrape() {
     })
 
 }
-scrape().then(x => {
-    console.log(x);
-}).catch(x => {
-    console.log(x);
-}) ;
-// console.log(getConcurrentCount(getLatest()))
+// scrape().then(x => {
+//     console.log(JSON.stringify(x));
+// }).catch(x => {
+//     console.log(x);
+// }) ;
+
+function fromDB(){
+    var a = fs.readFileSync('log.txt').toString();
+    a = JSON.parse(a);
+    return a;
+}
+
+async function matchDB() {
+    var db = fromDB()
+    var sc = await scrape();
+    var matchCount = db.length;
+    for(var i = 0; i < matchCount; i++) {
+        if (db[i].start == sc[i].start) {
+        } else {
+            throw new Error('non matching history');
+        }
+
+    }
+    for(; i < sc.length; i ++) {
+        console.log('one to add');
+    }
+}
+
+async function main() {
+    try {
+        await matchDB();
+    } catch (e){
+        console.log(e)
+    }
+}
+
+main();
