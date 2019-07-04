@@ -1,7 +1,7 @@
 'use strict'
 var http = require('https');
 
-const Event = require('../models/Event.model')
+const Event = require('../models/event.model')
 
 exports.history = async (req, res, next) => {
   // try {
