@@ -27,6 +27,7 @@
     "core-js": "^2.5.4",
     "generic-pool": "^3.7.1",
     "rxjs": "^6.0.0",
+    "underscore": "^1.9.1",
     "zone.js": "^0.8.26"
   },
   "devDependencies": {

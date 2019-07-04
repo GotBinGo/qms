@@ -20,7 +20,11 @@ export class Interceptor implements HttpInterceptor {
 
   errorHandler = (x) => {
     if (x instanceof HttpErrorResponse) {
-      this.matSnackBar.open(x.error.message, '', { duration: 2000 });
+      if (x.status === 504) {
+        this.matSnackBar.open('Server not available.', '', { duration: 2000 });
+      } else {
+        this.matSnackBar.open(x.error.message, '', { duration: 2000 });
+      }
     } else {
       console.log('not HttpErrorResponse', x);
     }

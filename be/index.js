@@ -9,8 +9,6 @@ function getLatest() {
     return [createState(true), createState(false), createState(false), createState(false), createState(false)]
 }
 
-
-
 function getConcurrentCount(states) {
     return states.filter(x => x.inProgress).length
 }
@@ -96,11 +94,16 @@ async function matchDB() {
 }
 
 async function main() {
-    try {
-        await matchDB();
-    } catch (e){
-        console.log(e)
-    }
+    scrape().then(x => {
+        console.log(JSON.stringify(x));
+    }).catch(x => {
+        console.log(x);
+    }) ;
+    // try {
+    //     await matchDB();
+    // } catch (e){
+    //     console.log(e)
+    // }
 }
 
 main();

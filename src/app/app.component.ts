@@ -8,9 +8,9 @@ import { LoginService } from './login.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  tab = 3;
+  tab = 0;
   loginSubject: Subject<void> = new Subject<void>();
-  isLogin = true;
+  isLogin = false;
 
   constructor(private loginService: LoginService) {
   }
@@ -22,6 +22,7 @@ export class AppComponent implements OnInit {
       if (x) {
         this.login(1);
         this.tab = 0;
+        console.log('tab', 0);
       } else {
         this.tab = 1;
       }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../login.service';
-
+import { _ } from 'underscore';
 @Component({
   selector: 'app-history',
   templateUrl: './history.component.html',
@@ -14,7 +14,7 @@ export class HistoryComponent implements OnInit {
 
   ngOnInit() {
     this.loginService.onHistoryChange.subscribe(res => {
-      this.history = res;
+      this.history = _.sortBy(res, 'start').reverse();
     });
   }
 

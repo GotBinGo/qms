@@ -20,6 +20,7 @@ export class NewDomainComponent implements OnInit {
   login = null;
 
   ngOnInit() {
+    console.log('new domain component init');
     this.reading = this.login;
   }
 
