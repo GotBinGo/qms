@@ -1,4 +1,4 @@
-<div class="mt-4">
+<div class="">
   <!-- <div class="reader">d</div> -->
   <zxing-scanner *ngIf="reading" class="reader" [torch]='torch' (scanSuccess)="onCodeResult($event)"></zxing-scanner>
   <mat-card *ngIf="!reading" class="mt-1 vertical-center" style="max-width: 800px;">
