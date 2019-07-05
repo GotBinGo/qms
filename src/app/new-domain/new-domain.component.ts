@@ -26,10 +26,9 @@ export class NewDomainComponent implements OnInit {
     setTimeout(() => {
       this.torch = false;
     }, 1);
-    const interval = setInterval(() => {
+    setInterval(() => {
       this.torch = true;
     }, 2000);
-    clearInterval(interval);
   }
 
   onChange(e) {
