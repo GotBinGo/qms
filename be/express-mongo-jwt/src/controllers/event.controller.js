@@ -1,7 +1,28 @@
 'use strict'
 var http = require('https');
-
+const APIError = require('../utils/APIError')
+const httpStatus = require('http-status')
 const Event = require('../models/event.model')
+const Rent = require('../models/rent.model')
+const User = require('../models/user.model')
+
+// TODO can be RENTED
+// TODO can be RENTED
+// TODO can be RENTED
+// TODO can be RENTED
+// TODO can be RENTED
+
+function canRent() {
+    return false;
+}
+
+exports.rent = async (req, res, next) => {
+    if (!canRent()) {
+        return next(new APIError('Cannot rent this bike at this time', httpStatus.FORBIDDEN))
+    }
+    Rent.insertMany([{start: "start", bike:"bike", user: req.user}])
+    res.json('ok');
+}
 
 exports.history = async (req, res, next) => {
   // try {
@@ -12,8 +33,7 @@ exports.history = async (req, res, next) => {
   //   res.json(e);
   // }
   try {
-    scrape().then(x => {
-        console.log(JSON.stringify(x));
+    matchDB(req).then(x => {
         res.json(x);
     }).catch(x => {
         console.log(x);
@@ -25,6 +45,45 @@ exports.history = async (req, res, next) => {
   }
 }
 
+async function matchDB(req) {
+    var db = await Event.find().exec()
+    var sc = await scrape();
+    var matchCount = db.length;
+    for(var i = 0; i < matchCount; i++) {
+        if (db[i].start == sc[i].start) {
+        } else {
+            throw new Error('non matching history, idx:' + i);
+        }
+    }
+    await Event.insertMany(sc.filter((x, j) => j >= i));
+    for(; i < sc.length; i ++) {
+        console.log('one to add');
+    }
+    db = await Rent.aggregate([
+        { "$lookup": { 
+            "from": "events", 
+            "localField": "start", 
+            "foreignField": "start", 
+            "as": "collection2_doc"
+        }}, 
+        { "$unwind": "$collection2_doc" },
+        { "$redact": { 
+            "$cond": [
+                { "$eq": [ "$bike", "$collection2_doc.bike" ] }, 
+                "$$KEEP", 
+                "$$PRUNE"
+            ]
+        }}, 
+        { "$project": { 
+            "start": 1, 
+            "bike": 1, 
+            "route": "$collection2_doc.route",
+            "end": "$collection2_doc.end"
+        }}
+    ]);
+    db = await Event.find();
+    return db;
+}
 
 function scrape() {
   return new Promise(function (resolve, reject) {
