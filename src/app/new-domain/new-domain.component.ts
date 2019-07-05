@@ -23,12 +23,12 @@ export class NewDomainComponent implements OnInit {
   ngOnInit() {
     console.log('new domain component init');
     this.reading = this.login;
-    setTimeout(() => {
+    setInterval(() => {
       this.torch = false;
-    }, 500);
+    }, 5000);
     setInterval(() => {
       this.torch = true;
-    }, 100);
+    }, 3000);
   }
 
   onChange(e) {
