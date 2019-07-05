@@ -57,4 +57,8 @@ export class NewDomainComponent implements OnInit {
       }, 2000);
     }, 5000);
   }
+
+  flash() {
+    this.torch = true;
+  }
 }
