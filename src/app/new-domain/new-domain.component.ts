@@ -25,7 +25,7 @@ export class NewDomainComponent implements OnInit {
     this.reading = this.login;
     setTimeout(() => {
       this.torch = true;
-    });
+    }, 1);
   }
 
   onChange(e) {
