@@ -48,6 +48,7 @@ export class NewDomainComponent implements OnInit {
     setTimeout(() => {
       this.qrResult = '';
       this.reading = true;
+      this.torch = true;
     }, 5000);
   }
 }
