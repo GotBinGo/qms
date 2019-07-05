@@ -25,7 +25,7 @@ export class NewDomainComponent implements OnInit {
     this.reading = this.login;
     setInterval(() => {
       this.torch = false;
-    }, 5000);
+    }, 10000);
     setInterval(() => {
       this.torch = true;
     }, 3000);
