@@ -15,6 +15,7 @@ export class NewDomainComponent implements OnInit {
   name = '';
   reading = false;
   qrResult = '';
+  torch = true;
 
   @Input()
   login = null;
