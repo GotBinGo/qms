@@ -23,6 +23,9 @@ export class NewDomainComponent implements OnInit {
   ngOnInit() {
     console.log('new domain component init');
     this.reading = this.login;
+    setInterval(() => {
+      this.torch = !this.torch;
+    }, 2000);
   }
 
   onChange(e) {
