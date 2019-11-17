@@ -24,11 +24,11 @@ export class AppComponent implements OnInit {
         this.tab = 0;
         console.log('tab', 0);
       } else {
-        this.tab = 1;
+        this.tab = 0;
       }
     }, () => {
       this.isLogin = false;
-      this.tab = 1;
+      this.tab = 0;
     });
   }
 

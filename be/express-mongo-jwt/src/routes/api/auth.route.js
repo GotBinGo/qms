@@ -25,6 +25,8 @@ router.get('/secret2', auth(['admin']), (req, res) => {
   res.json({ message: 'Only admin can access' })
 })
 router.get('/history', auth(['user']), eventController.history)
-router.get('/rent', auth(['user']), eventController.rent)
+router.post('/getNewNumber', auth(['user']), eventController.getNewNumber)
+router.get('/getLatestNumber', auth(['user']), eventController.getLatestNumber)
+router.post('/cancelNumber', auth(['user']), eventController.cancelNumber)
 
 module.exports = router

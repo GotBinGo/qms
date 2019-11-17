@@ -1,29 +1,33 @@
-<div class="">
+<div class="" *ngIf="number === null">
   <!-- <div class="reader">d</div> -->
   <zxing-scanner *ngIf="reading" class="reader" [torch]='torch' (scanSuccess)="onCodeResult($event)"></zxing-scanner>
   <mat-card *ngIf="!reading" class="mt-1 vertical-center" style="max-width: 800px;">
       <form  ngSubmit="emailLogin()" class="example-container">
-        <!-- <h3 class="mb-3 mt-3">Get a Bubi</h3> -->
-        <h4 class="mb-3 mt-3">{{qrResult}}</h4>
+        <!-- <h4 class="mb-3 mt-3">{{qrResult}}</h4> -->
         <div class="row">
-          <div class="col-md-2 "></div>
-          <div class="col-md-8">
-            <div class="row">
-              <!-- <div class="col-3"></div> -->
-              <!-- <mat-form-field class="col-6">
-                <input [(ngModel)]="name" tabindex="0" matInput placeholder="Bike Code" name="user">                                  
-              </mat-form-field> -->
-          </div>      
+          <div class="col-12">
+            <button *ngFor="let i of objectKeys(cases)" (click)="onUnlock(i)" class="w-100 pt-1 pb-1 mt-2 mb-2" mat-raised-button color="primary" >{{cases[i]}}</button>
         </div>
       </div>
-      <div>
-        
+      <!-- <div>
         <button (click)="onUnlock()" mat-raised-button color="warn" class="float-right mt-5">Unlock</button>
-      </div>
+      </div> -->
     </form>
   </mat-card>
-  <div class="flash-button">
+  <div *ngIf="reading" class="flash-button">
     <button (click)="flash()" mat-raised-button color="primary" class="float-right">Flash</button>
   </div>
+</div>
+
+
+
+<div class="" *ngIf="number !== null">
+  <mat-card *ngIf="!reading" class="mt-1 vertical-center" style="max-width: 800px;">
+    <h4 class="mb-3 mt-3">You are waiting in line</h4>
+    {{number | json}}
+    <div class="mt-2"></div>
+    <button (click)="cancelNumber()" mat-raised-button color="warn" class="float-right">Cancel Number</button>
+    <div class="mb-5"></div>
+  </mat-card>
 </div>
   

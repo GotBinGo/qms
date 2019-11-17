@@ -26,9 +26,18 @@ export class LoginService {
     return of(true);
   }
 
-  getBike(code) {
-    return this.http.get<any>('../api/getBike.php?code=' + code);
+  getLatestNumber() {
+    return this.http.get<any>('../api/auth/getLatestNumber');
   }
+
+  getNewNumber(caseNumber) {
+    return this.http.post<any>('../api/auth/getNewNumber', {case: caseNumber});
+  }
+
+  cancelNumber(numberId) {
+    return this.http.post<any>('../api/auth/cancelNumber', {id: numberId});
+  }
+
 
   getHistory() {
     return this.http.get<any>('../api/auth/history').subscribe(x => this.onHistoryChange.next(x));

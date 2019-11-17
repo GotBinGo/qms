@@ -5,27 +5,30 @@ const httpStatus = require('http-status')
 const APIError = require('../utils/APIError')
 const Schema = mongoose.Schema
 
+const statusList = [
+  'waiting', 'processing', 'done'
+]
 
-const rentSchema = new Schema({
-  start: {
-    type: String,
+const numberSchema = new Schema({
+  case: {
+    type: Number,
     required: true,
   },
-  bike: {
+  status: {
     type: String,
-    required: true,
-  }, 
+    default: 'waiting',
+    enum: statusList
+  },
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
-}
-
+  }
 }, {
   timestamps: true
 })
 
-rentSchema.pre('save', async function save (next) {
+numberSchema.pre('save', async function save (next) {
   return next();
 })
 
-module.exports = mongoose.model('Rent', rentSchema)
+module.exports = mongoose.model('Number', numberSchema)
