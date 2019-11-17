@@ -30,7 +30,8 @@
 <div class="" *ngIf="number !== null && login">
   <mat-card *ngIf="!reading" class="mt-1 vertical-center" style="max-width: 800px;">
     <h4 class="mb-3 mt-3">You are waiting in line</h4>
-    <h4 *ngIf="number && number.status && number.status == 'waiting'" class="mb-3 mt-3">Please Wait</h4>
+    <h4 *ngIf="number && number.status && number.status == 'waiting'" class="mb-3 mt-3">Please Wait!</h4>
+    <h4 *ngIf="number && number.status && number.status == 'waiting'" class="mb-3 mt-3">About X minutes to go.</h4>
     <h4 *ngIf="number && number.status && number.status == 'processing'" style="color: green;" class="mb-3 mt-3">You are on!!!</h4>
 
     {{number | json}}

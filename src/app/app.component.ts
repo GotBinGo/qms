@@ -3,6 +3,7 @@ import { Subject } from 'rxjs';
 import { LoginService } from './login.service';
 import { MatDialog } from '@angular/material';
 import { InstructionsComponent } from './instructions/instructions.component';
+import { ConfirmModalComponent } from './confirm-modal/confirm-modal.component';
 
 @Component({
   selector: 'app-root',
@@ -37,13 +38,22 @@ export class AppComponent implements OnInit {
   onTabChange (e) {
     this.tab = e.index;
     if (e.index === 3) {
-      const dialogRef = this.dialog.open(InstructionsComponent, {
-        width: '250px',
+      const dialogRef = this.dialog.open(ConfirmModalComponent, {
+        width: '80%',
+        maxWidth: '500px',
       });
-      this.loginService.logout().subscribe(x => {
-        this.isLogin = false;
-        console.log('logged out');
-        this.loginSubject.next();
+
+      dialogRef.afterClosed().subscribe(result => {
+        if (result) {
+          this.loginService.logout().subscribe(x => {
+            this.isLogin = false;
+            console.log('logged out');
+            this.loginSubject.next();
+          });
+        } else {
+          this.tab = 0;
+          // nav back
+        }
       });
     } else if (e.index === 1 && this.isLogin) {
       this.loginService.getHistory();
