@@ -21,7 +21,7 @@
   </mat-tab>
   <mat-tab>
     <ng-template mat-tab-label>
-      <mat-icon *ngIf="isLogin" class="dyn-tab-icon">exit_to_app</mat-icon>
+      <mat-icon *ngIf="isLogin" class="qms-tab-icon">exit_to_app</mat-icon>
       <div *ngIf="!isLogin" class="nav-bar-label">Login</div>
     </ng-template>
     <app-login *ngIf="!isLogin" (setTab)="setTab($event)" (login)="login($event)"></app-login>
