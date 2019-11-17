@@ -19,7 +19,7 @@ import {MatChipsModule} from '@angular/material/chips';
 import {MatTabsModule} from '@angular/material/tabs';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
-import { NewDomainComponent } from './new-domain/new-domain.component';
+import { NewNumberComponent } from './new-number/new-number.component';
 import { InstructionsComponent } from './instructions/instructions.component';
 import { HistoryComponent } from './history/history.component';
 import { Interceptor } from './login/interceptor';
@@ -28,7 +28,7 @@ import { ZXingScannerModule } from '@zxing/ngx-scanner';
   declarations: [
     AppComponent,
     LoginComponent,
-    NewDomainComponent,
+    NewNumberComponent,
     InstructionsComponent,
     HistoryComponent,
   ],
