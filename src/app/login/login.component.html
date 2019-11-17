@@ -15,13 +15,13 @@
     <form *ngIf="register" ngSubmit="onRegister()" class="example-container">
         <h3 class="mb-3 mt-3">Email Register</h3>
         <mat-form-field>
-            <input matInput placeholder="E-mail" name="user" autocomplete="username">
+            <input matInput [(ngModel)]="regUsername" placeholder="E-mail" name="user" autocomplete="username">
         </mat-form-field>
         <mat-form-field>
-            <input type="password" matInput placeholder="Password" name="password" autocomplete="new-password">
+            <input type="password" [(ngModel)]="regPassword" matInput placeholder="Password" name="password" autocomplete="new-password">
         </mat-form-field>
         <mat-form-field>
-                <input matInput placeholder="Display name" name="display_name">
+                <input matInput  [(ngModel)]="regNick" placeholder="Display name" name="display_name">
         </mat-form-field>
         <div>
             <button (click)="register = false" mat-raised-button color="" class="float-left">Already signed up</button>

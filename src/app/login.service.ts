@@ -17,6 +17,15 @@ export class LoginService {
     return this.http.post<any>('../api/auth/login', {email, password});
   }
 
+  guest() {
+    return this.http.post<any>('../api/auth/guest', {});
+  }
+
+
+  register(email, password, name) {
+    return this.http.post<any>('../api/auth/register', {email, password, name});
+  }
+
   isLogin() {
     return this.http.get<any>('../api/auth/isLogin');
   }
@@ -30,8 +39,8 @@ export class LoginService {
     return this.http.get<any>('../api/auth/getLatestNumber');
   }
 
-  getNewNumber(caseNumber) {
-    return this.http.post<any>('../api/auth/getNewNumber', {case: caseNumber});
+  getNewNumber(caseNumber, orgNumber) {
+    return this.http.post<any>('../api/auth/getNewNumber', {case: caseNumber, org: orgNumber});
   }
 
   cancelNumber(numberId) {

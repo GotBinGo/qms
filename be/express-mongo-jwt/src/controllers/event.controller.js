@@ -21,7 +21,7 @@ exports.getNewNumber = async (req, res, next) => {
         return next(new APIError('Cannot rent this bike at this time', httpStatus.FORBIDDEN))
     }
     try {
-        var a = (await Num.insertMany([{case: req.body.case, user: req.user}]))[0]
+        var a = (await Num.insertMany([{case: req.body.case, org: req.body.org, user: req.user}]))[0]
         a.user = a.user._id;
         res.json(a);
     } catch(e) {
@@ -33,7 +33,7 @@ exports.getLatestNumber = async (req, res, next) => {
     if (!canRent()) {
         return next(new APIError('Cannot rent this bike at this time', httpStatus.FORBIDDEN))
     }
-    var a = await Num.findOne({user: req.user, status: 'waiting'}, {}, {sort: { 'createdAt' : -1 }});
+    var a = await Num.findOne({user: req.user, $or: [{status: 'waiting'}, {status: 'processing'}]}, {}, {sort: { 'createdAt' : -1 }});
     res.json(a);
 }
 

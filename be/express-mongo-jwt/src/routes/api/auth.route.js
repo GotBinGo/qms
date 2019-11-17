@@ -9,6 +9,7 @@ const { create } = require('../../validations/user.validation')
 const auth = require('../../middlewares/authorization')
 
 router.post('/register', validator(create), authController.register)
+router.post('/guest', authController.guest)
 router.post('/login', authController.login)
 
 router.get('/isLogin', (req, res) => {

@@ -57,7 +57,7 @@ import { ZXingScannerModule } from '@zxing/ngx-scanner';
     MatSnackBarModule,
     ZXingScannerModule,
   ],
-  entryComponents: [],
+  entryComponents: [InstructionsComponent],
   providers: [    {
     provide: HTTP_INTERCEPTORS,
     useClass: Interceptor,

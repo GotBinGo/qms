@@ -14,6 +14,11 @@ export class LoginComponent implements OnInit {
 
   username = '';
   password = '';
+
+  regUsername = '';
+  regPassword = '';
+  regNick = '';
+
   constructor(private loginService: LoginService) { }
 
   ngOnInit() {
@@ -38,5 +43,10 @@ export class LoginComponent implements OnInit {
   }
 
   onRegister() {
+    this.loginService.register(this.regUsername, this.regPassword, this.regNick).subscribe((res) => {
+      this.username = this.regUsername;
+      this.password = this.regPassword;
+      this.onLogin();
+    });
   }
 }

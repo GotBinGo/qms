@@ -17,6 +17,21 @@ exports.register = async (req, res, next) => {
   }
 }
 
+exports.guest = async (req, res, next) => {
+  try {
+    const body = {email: Math.random() + '@a.ic.hu', name: 'guest', password: '123123'};
+    const rUser = new User(body)
+    const savedUser = await rUser.save()
+
+    const user = await User.findAndGenerateToken(body)
+    const payload = {sub: user.id}
+    const token = jwt.sign(payload, config.secret)
+    return res.json({ message: 'OK', token: token })
+  } catch (error) {
+    return next(User.checkDuplicateEmailError(error))
+  }
+}
+
 exports.login = async (req, res, next) => {
   try {
     const user = await User.findAndGenerateToken(req.body)

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { LoginService } from './login.service';
+import { MatDialog } from '@angular/material';
+import { InstructionsComponent } from './instructions/instructions.component';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +14,7 @@ export class AppComponent implements OnInit {
   loginSubject: Subject<void> = new Subject<void>();
   isLogin = false;
 
-  constructor(private loginService: LoginService) {
+  constructor(private loginService: LoginService, public dialog: MatDialog) {
   }
 
   ngOnInit() {
@@ -35,6 +37,9 @@ export class AppComponent implements OnInit {
   onTabChange (e) {
     this.tab = e.index;
     if (e.index === 3) {
+      const dialogRef = this.dialog.open(InstructionsComponent, {
+        width: '250px',
+      });
       this.loginService.logout().subscribe(x => {
         this.isLogin = false;
         console.log('logged out');
@@ -52,5 +57,7 @@ export class AppComponent implements OnInit {
   login(e) {
     this.loginSubject.next();
     this.isLogin = true;
+
+    console.log('logged in in app')
   }
 }

@@ -14,6 +14,10 @@ const numberSchema = new Schema({
     type: Number,
     required: true,
   },
+  org: {
+    type: Number,
+    required: true,
+  },
   status: {
     type: String,
     default: 'waiting',
