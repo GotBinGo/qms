@@ -46,12 +46,12 @@ export class NewNumberComponent implements OnInit, OnDestroy {
         this.loginService.getLatestNumber().subscribe(x => {
           this.number = x;
         });
+        this.loginService.getOrgs().subscribe(a => {
+          this.orgs = a;
+        });
       }
     }, 1000);
 
-    this.loginService.getOrgs().subscribe(a => {
-      this.orgs = a;
-    });
 
     // this.onCodeResult('123-112-132'); // TODO mock
   }

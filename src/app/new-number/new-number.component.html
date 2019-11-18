@@ -14,8 +14,16 @@
 
       <div class="row" *ngIf="org">
         <div class="col-12">
-            <h4 class="mb-3 mt-3">{{orgs[org].name}}</h4>
-          <button *ngFor="let i of objectKeys(cases)" (click)="onNewNumber(cases[i].case)" class="w-100 pt-1 pb-1 mt-2 mb-2" mat-raised-button color="primary" >{{cases[i].name}}</button>
+            <div class="row">
+              <div class="">
+                <h4 class="mb-3 mt-3">{{orgs[org].name}}</h4>
+              </div>
+              <div class="ml-3 mt-2">
+                <button (click)="org = null; cases = [];" class="mt-1" mat-raised-button color="" ><</button>
+              </div>
+            </div>
+            
+            <button *ngFor="let i of objectKeys(cases)" (click)="onNewNumber(cases[i].case)" class="w-100 pt-1 pb-1 mt-2 mb-2" mat-raised-button color="primary" >{{cases[i].name}}</button>
         </div>
       </div>
     </form>
@@ -27,7 +35,7 @@
 
 
 
-<div class="" *ngIf="number !== null && login">
+<div class="" *ngIf="number && login">
   <mat-card *ngIf="!reading" class="mt-1 vertical-center" style="max-width: 800px;">
     <h4 class="mb-3 mt-3">You are waiting in line</h4>
     <h4 *ngIf="number && number.status && number.status == 'waiting'" class="mb-3 mt-3">Please Wait!</h4>
