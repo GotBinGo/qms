@@ -8,14 +8,14 @@
         <div class="col-12">
           <button (click)="reading = true" class="w-100 pt-1 pb-1 mt-2 mb-2" mat-raised-button color="primary" >Scan Organization Code </button>
 
-          <button *ngFor="let i of objectKeys(orgs)" (click)="onOrgSelect(i)" class="w-100 pt-1 pb-1 mt-2 mb-2" mat-raised-button color="" >{{orgs[i]}}</button>
+          <button *ngFor="let i of objectKeys(orgs)" (click)="onOrgSelect(i)" class="w-100 pt-1 pb-1 mt-2 mb-2" mat-raised-button color="" >{{orgs[i].name}}</button>
         </div>
       </div>
 
       <div class="row" *ngIf="org">
         <div class="col-12">
-            <h4 class="mb-3 mt-3">{{orgs[org]}}</h4>
-          <button *ngFor="let i of objectKeys(cases)" (click)="onNewNumber(i)" class="w-100 pt-1 pb-1 mt-2 mb-2" mat-raised-button color="primary" >{{cases[i]}}</button>
+            <h4 class="mb-3 mt-3">{{orgs[org].name}}</h4>
+          <button *ngFor="let i of objectKeys(cases)" (click)="onNewNumber(cases[i].case)" class="w-100 pt-1 pb-1 mt-2 mb-2" mat-raised-button color="primary" >{{cases[i].name}}</button>
         </div>
       </div>
     </form>
