@@ -52,4 +52,35 @@ export class LoginService {
     return this.http.get<any>('../api/auth/history').subscribe(x => this.onHistoryChange.next(x));
   }
 
+  getOrgs() {
+    return this.http.get<any>('../api/auth/getOrgs');
+  }
+
+  addOrg(orgName, orgID) {
+    return this.http.post<any>('../api/auth/addOrg', {name: orgName, org: orgID});
+  }
+
+  deleteOrgByNum(orgID) {
+    return this.http.post<any>('../api/auth/deleteOrgByNum', {org: orgID});
+  }
+
+  deleteOrgByName(orgName) {
+    return this.http.post<any>('../api/auth/deleteOrgByName', {name: orgName});
+  }
+
+  getCases(orgID) {
+    return this.http.post<any>('../api/auth/getCases', {org: orgID});
+  }
+
+  addCase(orgID, caseName, caseID) {
+    return this.http.post<any>('../api/auth/addCase', {org: orgID, name: caseName, case: caseID});
+  }
+
+  deleteCaseByNum(orgID, caseID) {
+    return this.http.post<any>('../api/auth/deleteCaseByNum', {org: orgID, case: caseID});
+  }
+
+  deleteCaseByName(orgID, caseName) {
+    return this.http.post<any>('../api/auth/deleteCaseByName', {org: orgID, name: caseName});
+  }
 }

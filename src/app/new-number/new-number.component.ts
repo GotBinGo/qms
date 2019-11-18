@@ -19,7 +19,7 @@ export class NewNumberComponent implements OnInit, OnDestroy {
 
   objectKeys = Object.keys;
   cases = ['Útlevél', 'Csekk Befizetés', 'Dokumentum Átvétel'];
-  orgs = ['Posta', 'Kormányablak'];
+  orgs = [];
 
   org;
   number;
@@ -48,6 +48,11 @@ export class NewNumberComponent implements OnInit, OnDestroy {
         });
       }
     }, 1000);
+
+    this.loginService.getOrgs().subscribe(a => {
+      this.orgs = a;
+    });
+
     // this.onCodeResult('123-112-132'); // TODO mock
   }
 
@@ -62,6 +67,9 @@ export class NewNumberComponent implements OnInit, OnDestroy {
 
   onOrgSelect(n) {
     this.org = n;
+    this.loginService.getCases(this.orgs[this.org].org).subscribe(x => {
+      this.cases = x;
+    });
   }
 
   onNewNumber(n) {
