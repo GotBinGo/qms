@@ -21,8 +21,7 @@ exports.addCase = async (req, res, next) => {
 
 exports.deleteCaseByNum = async (req, res, next) => {
   try {
-    var a = (await Org.deleteOne({org: req.body.org, case: req.body.case}))[0]
-    a.user = a.user._id;
+    var a = (await Case.deleteOne({org: req.body.org, case: req.body.case}));
     res.json(a);
   } catch(e) {
     res.json(e);
@@ -31,8 +30,7 @@ exports.deleteCaseByNum = async (req, res, next) => {
 
 exports.deleteCaseByName = async (req, res, next) => {
   try {
-    var a = (await Org.deleteOne({org: req.body.org, name: req.body.name}))[0]
-    a.user = a.user._id;
+    var a = (await Case.deleteOne({org: req.body.org, name: req.body.name}));
     res.json(a);
   } catch(e) {
     res.json(e);
