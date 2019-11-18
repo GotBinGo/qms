@@ -9,11 +9,13 @@ const caseSchema = new Schema({
   },
   org: {
     type: Number,
-    required: true
+    required: true,
+    unique: false
   },
   case: {
     type: Number,
-    required: true
+    required: true,
+    unique: false
   }
 }, {
   timestamps: true
