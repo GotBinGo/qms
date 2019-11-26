@@ -9,7 +9,7 @@
   </mat-tab>
   <mat-tab *ngIf="isLogin">
     <ng-template mat-tab-label>
-      <div class="nav-bar-label">History</div>
+      <div class="nav-bar-label">Hierarchy</div>
     </ng-template>
     <ng-template matTabContent>
       <app-history></app-history>
@@ -17,9 +17,12 @@
 </mat-tab>
   <mat-tab label="Instruction">
     <ng-template mat-tab-label>
-      <div class="nav-bar-label">Instructions</div>
+      <div class="nav-bar-label">Users</div>
     </ng-template>
-    <app-instructions></app-instructions>
+    <ng-template matTabContent>
+      <app-instructions></app-instructions>
+    </ng-template>
+
   </mat-tab>
   <mat-tab>
     <ng-template mat-tab-label>
