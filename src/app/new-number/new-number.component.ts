@@ -103,8 +103,7 @@ export class NewNumberComponent implements OnInit, OnDestroy {
   onCodeResult(x) {
     this.reading = false;
     x = x.split('/')[x.split('/').length - 1];
-    this.route.navigate(['/', x]);
-    this.org = x;
+    this.onOrgSelect(x);
     this.matSnackBar.open(x, '', { duration: 2000 });
     // setTimeout(() => {
     //   this.qrResult = '';
