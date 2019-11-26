@@ -25,6 +25,7 @@ import { HistoryComponent } from './history/history.component';
 import { Interceptor } from './login/interceptor';
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
 import { ConfirmModalComponent } from './confirm-modal/confirm-modal.component';
+import { TextInputModalComponent } from './text-input-modal/text-input-modal.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,6 +34,7 @@ import { ConfirmModalComponent } from './confirm-modal/confirm-modal.component';
     InstructionsComponent,
     HistoryComponent,
     ConfirmModalComponent,
+    TextInputModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -59,7 +61,7 @@ import { ConfirmModalComponent } from './confirm-modal/confirm-modal.component';
     MatSnackBarModule,
     ZXingScannerModule,
   ],
-  entryComponents: [ConfirmModalComponent],
+  entryComponents: [ConfirmModalComponent, TextInputModalComponent],
   providers: [    {
     provide: HTTP_INTERCEPTORS,
     useClass: Interceptor,

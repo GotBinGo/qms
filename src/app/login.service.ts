@@ -56,8 +56,8 @@ export class LoginService {
     return this.http.get<any>('../api/auth/getOrgs');
   }
 
-  addOrg(orgName, orgID) {
-    return this.http.post<any>('../api/auth/addOrg', {name: orgName, org: orgID});
+  addOrg(orgName) {
+    return this.http.post<any>('../api/auth/addOrg', {name: orgName});
   }
 
   deleteOrgByNum(orgID) {

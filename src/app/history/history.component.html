@@ -1,17 +1,35 @@
-<div class="mt-4">
-    <mat-card class="mt-1 vertical-center" style="max-width: 800px;">
-      <!-- <div class="example-container">
-        <h3 class="mb-3 mt-3">Your transaction history</h3>
-        <mat-card class="mt-2" *ngFor="let a of history">{{a.start + ' ' + a.bike + ' ' + a.route + ' ' + a.end}}</mat-card>
-      </div> -->
+<div class="mt-4" *ngIf="selectedOrgIndex === null">
+  <mat-card class="mt-1 vertical-center" style="max-width: 800px;">
+    <div>
+      <button (click)="add()" class="float-right" mat-mini-fab color="accent" >+</button>
+      <h3>Manage organizations</h3>
+    </div>
 
-      <div class="row" *ngIf="true">
-        <div class="col-12">
-          <button (click)="add()" class="w-100 pt-1 pb-1 mt-2 mb-2" mat-raised-button color="" >Add new</button>
-          <button *ngFor="let i of objectKeys(orgs)" (click)="onOrgSelect(i)" class="w-100 pt-1 pb-1 mt-2 mb-2" mat-raised-button color="primary" >{{orgs[i].name}}</button>
-        </div>
+    <div class="row" *ngIf="true">
+      <div class="col-12">
+        <!-- <button (click)="add()" class="w-100 pt-1 pb-1 mt-2 mb-2" mat-raised-button color="" >Add new</button> -->
+        <button *ngFor="let i of objectKeys(orgs)" (click)="onOrgSelect(i)" class="w-100 pt-1 pb-1 mt-2 mb-2" mat-raised-button color="primary" >{{orgs[i].name}}</button>
       </div>
-    </mat-card>
-  </div>
-    
+    </div>
+  </mat-card>
+</div>
+
+
+<div class="mt-4" *ngIf="selectedOrgIndex !== null">
+  <mat-card class="mt-1 vertical-center" style="max-width: 800px;">
+    <div>
+      <h3 style="max-width: calc(100% - 100px);" class="float-left">Cases for {{orgs[selectedOrgIndex].name}}</h3>
+      <button (click)="back()" class="float-left ml-3" mat-mini-fab color="" ><</button>
+      <button (click)="addCase()" class="float-right" mat-mini-fab color="accent" >+</button>
+    </div>
+
+    <div class="row w-100" *ngIf="true">
+      <div class="col-12">
+        <p *ngIf="!objectKeys(cases).length" class="w-100 mt-3">No cases here.</p>
+        <!-- <button (click)="add()" class="w-100 pt-1 pb-1 mt-2 mb-2" mat-raised-button color="" >Add new</button> -->
+        <button *ngFor="let i of objectKeys(cases)" (click)="onOrgSelect(i)" class="w-100 pt-1 pb-1 mt-2 mb-2" mat-raised-button color="primary" >{{cases[i].name}}</button>
+      </div>
+    </div>
+  </mat-card>
+</div>
   

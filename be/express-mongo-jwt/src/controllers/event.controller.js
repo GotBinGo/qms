@@ -34,7 +34,9 @@ exports.getLatestNumber = async (req, res, next) => {
         return next(new APIError('Cannot rent this bike at this time', httpStatus.FORBIDDEN))
     }
     var a = await Num.findOne({user: req.user, $or: [{status: 'waiting'}, {status: 'processing'}]}, {}, {sort: { 'createdAt' : -1 }});
-    res.json(a);
+    const ret = JSON.parse(JSON.stringify(a))
+    ret.timeToGo = 10;
+    res.json(ret);
 }
 
 exports.cancelNumber = async (req, res, next) => {
