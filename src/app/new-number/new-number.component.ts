@@ -66,6 +66,7 @@ export class NewNumberComponent implements OnInit, OnDestroy {
 
 
   ngOnDestroy() {
+    this.route.navigate(['/']);
     clearInterval(this.timer);
   }
 
