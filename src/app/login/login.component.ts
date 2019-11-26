@@ -33,7 +33,6 @@ export class LoginComponent implements OnInit {
 
   onLogin() {
     this.loginService.login(this.username, this.password).subscribe((res) => {
-      console.log(res);
       if (!res.errors) {
         localStorage.token = res.token;
         this.setTab.emit(0);

@@ -43,23 +43,24 @@ export class NewNumberComponent implements OnInit, OnDestroy {
     this.reading = false;
 
     this.timer = setInterval(_ => {
-      if ((this.login && this.number) || this.number === undefined) {
+      if (this.login && (this.number || this.number === undefined)) {
         this.loginService.getLatestNumber().subscribe(x => {
           this.number = x;
         });
+        if (this.orgs.length === 0) {
+          this.loginService.getOrgs().subscribe(a => {
+            this.orgs = a;
+            setTimeout(x => {
+              if (this.route.url === '/') {
+              } else {
+                this.onOrgSelect(this.route.url.split('/')[this.route.url.split('/').length - 1]);
+              }
+            }, 1);
+          });
+        }
       }
     }, 1000);
 
-    this.loginService.getOrgs().subscribe(a => {
-      this.orgs = a;
-      setTimeout(x => {
-        if (this.route.url === '/') {
-
-        } else {
-          this.onOrgSelect(this.route.url.split('/')[this.route.url.split('/').length - 1]);
-        }
-      }, 1);
-    });
 
   }
 
@@ -78,7 +79,6 @@ export class NewNumberComponent implements OnInit, OnDestroy {
       return;
     }
     this.org = n;
-    // this.route.n .navigate(['/heroes']);
     this.route.navigate(['/', this.orgs[this.org].org]);
     this.loginService.getCases(this.orgs[this.org].org).subscribe(x => {
       this.cases = x;
@@ -93,11 +93,6 @@ export class NewNumberComponent implements OnInit, OnDestroy {
         this.number = null;
       }
     });
-    // get number with n (case index)
-
-    // this.loginService.getBike(this.endingControl.value).subscribe(x => {
-    //   console.log(x);
-    // });
   }
 
   onCodeResult(x) {
@@ -105,10 +100,6 @@ export class NewNumberComponent implements OnInit, OnDestroy {
     x = x.split('/')[x.split('/').length - 1];
     this.onOrgSelect(x);
     this.matSnackBar.open(x, '', { duration: 2000 });
-    // setTimeout(() => {
-    //   this.qrResult = '';
-    //   this.reading = true;
-    // }, 5000);
   }
 
   flash() {
@@ -124,9 +115,7 @@ export class NewNumberComponent implements OnInit, OnDestroy {
   }
 
   guest() {
-    console.log('');
     this.loginService.guest().subscribe((res) => {
-      console.log(res);
       if (!res.errors) {
         localStorage.token = res.token;
         this.oLogin.emit();

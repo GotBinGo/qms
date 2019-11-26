@@ -25,7 +25,6 @@ export class AppComponent implements OnInit {
       if (x) {
         this.login(1);
         this.tab = 0;
-        console.log('tab', 0);
       } else {
         this.tab = 0;
       }
@@ -67,7 +66,5 @@ export class AppComponent implements OnInit {
   login(e) {
     this.loginSubject.next();
     this.isLogin = true;
-
-    console.log('logged in in app')
   }
 }
