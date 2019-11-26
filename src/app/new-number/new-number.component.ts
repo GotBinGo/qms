@@ -53,7 +53,11 @@ export class NewNumberComponent implements OnInit, OnDestroy {
     this.loginService.getOrgs().subscribe(a => {
       this.orgs = a;
       setTimeout(x => {
-        this.onOrgSelect(this.route.url.split('/')[this.route.url.split('/').length - 1]);
+        if (this.route.url === '/') {
+
+        } else {
+          this.onOrgSelect(this.route.url.split('/')[this.route.url.split('/').length - 1]);
+        }
       }, 1);
     });
 
