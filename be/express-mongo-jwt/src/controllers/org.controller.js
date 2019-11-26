@@ -9,7 +9,10 @@ exports.getOrgs = async (req, res, next) => {
 
 exports.addOrg = async (req, res, next) => {
   try {
-    var a = (await Org.insertMany([{name: req.body.name, org: req.body.org}]))[0]
+    var o = await Org.findOne({}, {}, {sort: { 'org' : -1 }});
+    console.log('XXXXXXXXXXXXXXXXXXXx', o.org)
+    // const n = n.org+1;
+    var a = (await Org.insertMany([{name: req.body.name, org: o.org+1}]))[0]
     a.user = a.user._id;
     res.json(a);
   } catch(e) {

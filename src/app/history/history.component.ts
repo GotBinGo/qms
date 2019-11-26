@@ -10,12 +10,22 @@ export class HistoryComponent implements OnInit {
 
   constructor(private loginService: LoginService) { }
 
-  history = [];
+  orgs = [];
+  objectKeys = Object.keys;
 
   ngOnInit() {
-    this.loginService.onHistoryChange.subscribe(res => {
-      this.history = _.sortBy(res, 'start').reverse();
+    this.loginService.getOrgs().subscribe(a => {
+      this.orgs = a;
     });
+  }
+
+  add() {
+    this.loginService.addOrg("alma", '1').subscribe(x => {
+      this.loginService.getOrgs().subscribe(a => {
+        this.orgs = a;
+      });
+    });
+    
   }
 
 }

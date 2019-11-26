@@ -4,6 +4,13 @@
         <h3 class="mb-3 mt-3">Your transaction history</h3>
         <mat-card class="mt-2" *ngFor="let a of history">{{a.start + ' ' + a.bike + ' ' + a.route + ' ' + a.end}}</mat-card>
       </div> -->
+
+      <div class="row" *ngIf="true">
+        <div class="col-12">
+          <button (click)="add()" class="w-100 pt-1 pb-1 mt-2 mb-2" mat-raised-button color="" >Add new</button>
+          <button *ngFor="let i of objectKeys(orgs)" (click)="onOrgSelect(i)" class="w-100 pt-1 pb-1 mt-2 mb-2" mat-raised-button color="primary" >{{orgs[i].name}}</button>
+        </div>
+      </div>
     </mat-card>
   </div>
     
