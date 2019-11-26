@@ -17,13 +17,15 @@
 
 <div class="mt-4" *ngIf="selectedOrgIndex !== null">
   <mat-card class="mt-1 vertical-center" style="max-width: 800px;">
-    <div>
+    <div class="">
       <h3 style="max-width: calc(100% - 100px);" class="float-left">Cases for {{orgs[selectedOrgIndex].name}}</h3>
-      <button (click)="back()" class="float-left ml-3" mat-mini-fab color="" ><</button>
+      <button (click)="back()" class="float-left ml-3" mat-mini-fab color="" >
+          <mat-icon class="qms-tab-icon">arrow_back</mat-icon>
+      </button>
       <button (click)="addCase()" class="float-right" mat-mini-fab color="accent" >+</button>
     </div>
-
-    <div class="row w-100" *ngIf="true">
+    <div class="row w-100" ></div>
+    <div class="row" >
       <div class="col-12">
         <p *ngIf="!objectKeys(cases).length" class="w-100 mt-3">No cases here.</p>
         <!-- <button (click)="add()" class="w-100 pt-1 pb-1 mt-2 mb-2" mat-raised-button color="" >Add new</button> -->

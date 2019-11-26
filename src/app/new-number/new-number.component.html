@@ -23,7 +23,9 @@
 
       <div *ngIf="org">
         <h3 class="float-left">{{orgs[org].name}}</h3>
-        <button (click)="back()" class="float-left ml-3" mat-mini-fab color="" ><</button>
+        <button (click)="back()" class="float-right ml-3" mat-mini-fab color="" >
+            <mat-icon class="qms-tab-icon">arrow_back</mat-icon>
+        </button>
       </div>
 
       <div class="row" *ngIf="org">
