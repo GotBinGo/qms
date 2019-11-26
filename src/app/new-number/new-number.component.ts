@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter, OnDestroy } from '@angu
 import { LoginService } from '../login.service';
 import { FormControl } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-new-number',
@@ -9,7 +10,7 @@ import { MatSnackBar } from '@angular/material';
   styleUrls: ['./new-number.component.css']
 })
 export class NewNumberComponent implements OnInit, OnDestroy {
-  constructor(private loginService: LoginService, private matSnackBar: MatSnackBar) { }
+  constructor(private loginService: LoginService, private matSnackBar: MatSnackBar, private route: Router, private ar: ActivatedRoute) { }
   dot = '.';
   endingControl = new FormControl('');
   name = '';
@@ -42,18 +43,20 @@ export class NewNumberComponent implements OnInit, OnDestroy {
     this.reading = false;
 
     this.timer = setInterval(_ => {
-      if (this.login) {
+      if ((this.login && this.number) || this.number === undefined) {
         this.loginService.getLatestNumber().subscribe(x => {
           this.number = x;
-        });
-        this.loginService.getOrgs().subscribe(a => {
-          this.orgs = a;
         });
       }
     }, 1000);
 
+    this.loginService.getOrgs().subscribe(a => {
+      this.orgs = a;
+      setTimeout(x => {
+        this.onOrgSelect(this.route.url.split('/')[this.route.url.split('/').length - 1]);
+      }, 1);
+    });
 
-    // this.onCodeResult('123-112-132'); // TODO mock
   }
 
 
@@ -66,7 +69,13 @@ export class NewNumberComponent implements OnInit, OnDestroy {
   }
 
   onOrgSelect(n) {
+    if (!this.orgs[n]) {
+      this.matSnackBar.open('Invalid URL.', '', { duration: 2000 });
+      return;
+    }
     this.org = n;
+    // this.route.n .navigate(['/heroes']);
+    this.route.navigate(['/', this.orgs[this.org].org]);
     this.loginService.getCases(this.orgs[this.org].org).subscribe(x => {
       this.cases = x;
     });
@@ -123,5 +132,11 @@ export class NewNumberComponent implements OnInit, OnDestroy {
 
   logIn() {
     this.setTab.emit(2);
+  }
+
+  back() {
+    this.org = null;
+    this.cases = [];
+    this.route.navigate(['/']);
   }
 }

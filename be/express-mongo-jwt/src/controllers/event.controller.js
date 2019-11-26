@@ -35,7 +35,9 @@ exports.getLatestNumber = async (req, res, next) => {
     }
     var a = await Num.findOne({user: req.user, $or: [{status: 'waiting'}, {status: 'processing'}]}, {}, {sort: { 'createdAt' : -1 }});
     const ret = JSON.parse(JSON.stringify(a))
-    ret.timeToGo = 10;
+    if (ret) {
+        ret.timeToGo = 10;
+    }
     res.json(ret);
 }
 

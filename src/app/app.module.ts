@@ -26,6 +26,12 @@ import { Interceptor } from './login/interceptor';
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
 import { ConfirmModalComponent } from './confirm-modal/confirm-modal.component';
 import { TextInputModalComponent } from './text-input-modal/text-input-modal.component';
+import { RouterModule, Routes } from '@angular/router';
+
+const appRoutes: Routes = [
+  { path: '**', component: NewNumberComponent }
+];
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,6 +43,7 @@ import { TextInputModalComponent } from './text-input-modal/text-input-modal.com
     TextInputModalComponent,
   ],
   imports: [
+    RouterModule.forRoot(appRoutes),
     BrowserModule,
     HttpClientModule,
     MatCardModule,
