@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { LoginService } from './login.service';
 import { MatDialog } from '@angular/material';
-import { InstructionsComponent } from './instructions/instructions.component';
+import { ServeComponent } from './serve/serve.component';
 import { ConfirmModalComponent } from './confirm-modal/confirm-modal.component';
 
 @Component({

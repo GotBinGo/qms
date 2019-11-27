@@ -4,11 +4,11 @@ import { CasePickerModalComponent } from '../case-picker-modal/case-picker-modal
 import { MatDialog } from '@angular/material';
 
 @Component({
-  selector: 'app-instructions',
-  templateUrl: './instructions.component.html',
-  styleUrls: ['./instructions.component.css']
+  selector: 'app-serve',
+  templateUrl: './serve.component.html',
+  styleUrls: ['./serve.component.css']
 })
-export class InstructionsComponent implements OnInit, OnDestroy {
+export class ServeComponent implements OnInit, OnDestroy {
 
   constructor(private loginService: LoginService, public dialog: MatDialog) { }
   objectKeys = Object.keys;

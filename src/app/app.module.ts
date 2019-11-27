@@ -20,7 +20,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { NewNumberComponent } from './new-number/new-number.component';
-import { InstructionsComponent } from './instructions/instructions.component';
+import { ServeComponent } from './serve/serve.component';
 import { HistoryComponent } from './history/history.component';
 import { Interceptor } from './login/interceptor';
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
@@ -39,7 +39,7 @@ const appRoutes: Routes = [
     AppComponent,
     LoginComponent,
     NewNumberComponent,
-    InstructionsComponent,
+    ServeComponent,
     HistoryComponent,
     ConfirmModalComponent,
     TextInputModalComponent,
