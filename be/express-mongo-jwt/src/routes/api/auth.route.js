@@ -6,6 +6,8 @@ const authController = require('../../controllers/auth.controller')
 const eventController = require('../../controllers/event.controller')
 const orgController = require('../../controllers/org.controller')
 const caseController = require('../../controllers/case.controller')
+const userController = require('../../controllers/user.controller')
+
 const validator = require('express-validation')
 const { create } = require('../../validations/user.validation')
 const auth = require('../../middlewares/authorization')
@@ -27,19 +29,22 @@ router.get('/secret2', auth(['admin']), (req, res) => {
   // example route for auth
   res.json({ message: 'Only admin can access' })
 })
-router.get('/history', auth(['user']), eventController.history)
-router.post('/getNewNumber', auth(['user']), eventController.getNewNumber)
-router.get('/getLatestNumber', auth(['user']), eventController.getLatestNumber)
-router.post('/cancelNumber', auth(['user']), eventController.cancelNumber)
+router.get('/history', auth(['guest', 'user', 'worker', 'admin']), eventController.history)
+router.post('/getNewNumber', auth(['guest', 'user', 'worker', 'admin']), eventController.getNewNumber)
+router.get('/getLatestNumber', auth(['guest', 'user', 'worker', 'admin']), eventController.getLatestNumber)
+router.post('/cancelNumber', auth(['guest', 'user', 'worker', 'admin']), eventController.cancelNumber)
 
-router.get('/getOrgs', auth(['user']), orgController.getOrgs)
-router.post('/addOrg', auth(['user']), orgController.addOrg)
-router.post('/deleteOrgByNum', auth(['user']), orgController.deleteOrgByNum)
-router.post('/deleteOrgByName', auth(['user']), orgController.deleteOrgByName)
+router.get('/getOrgs', auth(['guest', 'user', 'worker', 'admin']), orgController.getOrgs)
+router.post('/addOrg', auth(['guest', 'user', 'worker', 'admin']), orgController.addOrg)
+router.post('/deleteOrgByNum', auth(['guest', 'user', 'worker', 'admin']), orgController.deleteOrgByNum)
+router.post('/deleteOrgByName', auth(['guest', 'user', 'worker', 'admin']), orgController.deleteOrgByName)
 
-router.post('/getCases', auth(['user']), caseController.getCases)
-router.post('/addCase', auth(['user']), caseController.addCase)
-router.post('/deleteCaseByNum', auth(['user']), caseController.deleteCaseByNum)
-router.post('/deleteCaseByName', auth(['user']), caseController.deleteCaseByName)
+router.post('/getCases', auth(['guest', 'user', 'worker', 'admin']), caseController.getCases)
+router.post('/addCase', auth(['guest', 'user', 'worker', 'admin']), caseController.addCase)
+router.post('/deleteCaseByNum', auth(['guest', 'user', 'worker', 'admin']), caseController.deleteCaseByNum)
+router.post('/deleteCaseByName', auth(['guest', 'user', 'worker', 'admin']), caseController.deleteCaseByName)
+
+router.get('/getUsers', auth(['guest', 'user', 'worker', 'admin']), userController.getUsers)
+router.post('/setUser', auth(['guest', 'user', 'worker', 'admin']), userController.setUser)
 
 module.exports = router

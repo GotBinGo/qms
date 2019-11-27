@@ -3,6 +3,7 @@ import { LoginService } from '../login.service';
 import { _ } from 'underscore';
 import { TextInputModalComponent } from '../text-input-modal/text-input-modal.component';
 import { MatDialog, MatSnackBar } from '@angular/material';
+import { RoleModalComponent } from '../role-modal/role-modal.component';
 @Component({
   selector: 'app-history',
   templateUrl: './history.component.html',
@@ -14,6 +15,7 @@ export class HistoryComponent implements OnInit {
 
   orgs = [];
   cases = [];
+  users = [];
   objectKeys = Object.keys;
 
   selectedOrgIndex = null;
@@ -21,6 +23,9 @@ export class HistoryComponent implements OnInit {
   ngOnInit() {
     this.loginService.getOrgs().subscribe(a => {
       this.orgs = a;
+    });
+    this.loginService.getUsers().subscribe(a => {
+      this.users = a;
     });
   }
 
@@ -86,6 +91,23 @@ export class HistoryComponent implements OnInit {
   back() {
     this.selectedOrgIndex = null;
     this.cases = [];
+  }
+
+  onUserSelect(i) {
+    const dialogRef = this.dialog.open(RoleModalComponent, {
+      width: '80%',
+      maxWidth: '500px',
+      data: {title: 'Edit user role', text: 'What should be the role of '+ this.users[i].name +'?', user: this.users[i], role: this.users[i].role, orgs: this.orgs}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.loginService.getUsers().subscribe(a => {
+          this.users = a;
+        });
+      } else {
+      }
+    });
   }
 
 }

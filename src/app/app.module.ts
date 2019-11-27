@@ -27,6 +27,7 @@ import { ZXingScannerModule } from '@zxing/ngx-scanner';
 import { ConfirmModalComponent } from './confirm-modal/confirm-modal.component';
 import { TextInputModalComponent } from './text-input-modal/text-input-modal.component';
 import { RouterModule, Routes } from '@angular/router';
+import { RoleModalComponent } from './role-modal/role-modal.component';
 
 const appRoutes: Routes = [
   { path: '**', component: NewNumberComponent }
@@ -41,6 +42,7 @@ const appRoutes: Routes = [
     HistoryComponent,
     ConfirmModalComponent,
     TextInputModalComponent,
+    RoleModalComponent,
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
@@ -68,7 +70,7 @@ const appRoutes: Routes = [
     MatSnackBarModule,
     ZXingScannerModule,
   ],
-  entryComponents: [ConfirmModalComponent, TextInputModalComponent],
+  entryComponents: [ConfirmModalComponent, TextInputModalComponent, RoleModalComponent],
   providers: [    {
     provide: HTTP_INTERCEPTORS,
     useClass: Interceptor,

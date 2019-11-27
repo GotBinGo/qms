@@ -83,4 +83,12 @@ export class LoginService {
   deleteCaseByName(orgID, caseName) {
     return this.http.post<any>('../api/auth/deleteCaseByName', {org: orgID, name: caseName});
   }
+
+  getUsers() {
+    return this.http.get<any>('../api/auth/getUsers');
+  }
+
+  setUser(id, role, org) {
+    return this.http.post<any>('../api/auth/setUser', {id, role, org});
+  }
 }
