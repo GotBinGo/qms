@@ -47,4 +47,7 @@ router.post('/deleteCaseByName', auth(['guest', 'user', 'worker', 'admin']), cas
 router.get('/getUsers', auth(['guest', 'user', 'worker', 'admin']), userController.getUsers)
 router.post('/setUser', auth(['guest', 'user', 'worker', 'admin']), userController.setUser)
 
+router.post('/getNextNumber', auth(['guest', 'user', 'worker', 'admin']), eventController.getNextNumber)
+
+
 module.exports = router

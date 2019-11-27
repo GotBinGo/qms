@@ -11,7 +11,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatDatepickerModule} from '@angular/material/datepicker';
-import {MatNativeDateModule, MatDialogModule, MatSnackBarModule} from '@angular/material';
+import {MatNativeDateModule, MatDialogModule, MatSnackBarModule, MatProgressSpinnerModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
@@ -28,6 +28,7 @@ import { ConfirmModalComponent } from './confirm-modal/confirm-modal.component';
 import { TextInputModalComponent } from './text-input-modal/text-input-modal.component';
 import { RouterModule, Routes } from '@angular/router';
 import { RoleModalComponent } from './role-modal/role-modal.component';
+import { CasePickerModalComponent } from './case-picker-modal/case-picker-modal.component';
 
 const appRoutes: Routes = [
   { path: '**', component: NewNumberComponent }
@@ -43,6 +44,7 @@ const appRoutes: Routes = [
     ConfirmModalComponent,
     TextInputModalComponent,
     RoleModalComponent,
+    CasePickerModalComponent,
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
@@ -68,9 +70,10 @@ const appRoutes: Routes = [
     MatChipsModule,
     MatDialogModule,
     MatSnackBarModule,
+    MatProgressSpinnerModule,
     ZXingScannerModule,
   ],
-  entryComponents: [ConfirmModalComponent, TextInputModalComponent, RoleModalComponent],
+  entryComponents: [ConfirmModalComponent, TextInputModalComponent, RoleModalComponent, CasePickerModalComponent],
   providers: [    {
     provide: HTTP_INTERCEPTORS,
     useClass: Interceptor,

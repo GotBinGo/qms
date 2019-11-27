@@ -3,6 +3,7 @@ import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpHeaders, Http
 import { Observable, throwError } from 'rxjs';
 import { tap, finalize, retryWhen, switchMap, take, zip, map, catchError, delay, delayWhen } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material';
+import { Exception } from '@zxing/library';
 
 @Injectable()
 export class Interceptor implements HttpInterceptor {
@@ -32,6 +33,6 @@ export class Interceptor implements HttpInterceptor {
     } else {
       console.log('not HttpErrorResponse', x);
     }
-    throw('Network Error');
+    throw(new Exception('Network Error'));
   }
 }

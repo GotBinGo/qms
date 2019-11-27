@@ -91,4 +91,8 @@ export class LoginService {
   setUser(id, role, org) {
     return this.http.post<any>('../api/auth/setUser', {id, role, org});
   }
+
+  getNextNumber(org, cases) {
+    return this.http.post<any>('../api/auth/getNextNumber', {org: org, cases});
+  }
 }

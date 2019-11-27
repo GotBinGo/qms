@@ -97,7 +97,12 @@ export class HistoryComponent implements OnInit {
     const dialogRef = this.dialog.open(RoleModalComponent, {
       width: '80%',
       maxWidth: '500px',
-      data: {title: 'Edit user role', text: 'What should be the role of '+ this.users[i].name +'?', user: this.users[i], role: this.users[i].role, orgs: this.orgs}
+      data: {
+        title: 'Edit user role',
+        text: 'What should be the role of ' + this.users[i].name + '?',
+        user: this.users[i],
+        role: this.users[i].role,
+        orgs: this.orgs}
     });
 
     dialogRef.afterClosed().subscribe(result => {
