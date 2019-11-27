@@ -32,8 +32,8 @@ exports.cancelNumber = async (req, res, next) => {
     var a = await Num.findOne({_id: req.body.id}, {}, {sort: { 'createdAt' : -1 }});
     if(a) {
         a.status = "done";
+        await a.save()
     }
-    await a.save()
     res.json(a);
 }
 
@@ -41,7 +41,7 @@ exports.getNextNumber = async (req, res, next) => {
     var a = await Num.findOne({org: req.body.org, status: 'waiting', case: { "$in": req.body.cases}}, null, {sort: { 'createdAt' : -1 }});
     if(a) {
         a.status = "processing"
+        a.save();
     }
-    a.save();
     res.json(a);
 }
