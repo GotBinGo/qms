@@ -21,7 +21,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { NewNumberComponent } from './new-number/new-number.component';
 import { ServeComponent } from './serve/serve.component';
-import { HistoryComponent } from './history/history.component';
+import { ManageComponent } from './manage/manage.component';
 import { Interceptor } from './login/interceptor';
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
 import { ConfirmModalComponent } from './confirm-modal/confirm-modal.component';
@@ -40,7 +40,7 @@ const appRoutes: Routes = [
     LoginComponent,
     NewNumberComponent,
     ServeComponent,
-    HistoryComponent,
+    ManageComponent,
     ConfirmModalComponent,
     TextInputModalComponent,
     RoleModalComponent,

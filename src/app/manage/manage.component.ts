@@ -5,11 +5,11 @@ import { TextInputModalComponent } from '../text-input-modal/text-input-modal.co
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { RoleModalComponent } from '../role-modal/role-modal.component';
 @Component({
-  selector: 'app-history',
-  templateUrl: './history.component.html',
-  styleUrls: ['./history.component.css']
+  selector: 'app-manage',
+  templateUrl: './manage.component.html',
+  styleUrls: ['./manage.component.css']
 })
-export class HistoryComponent implements OnInit {
+export class ManageComponent implements OnInit {
 
   constructor(private loginService: LoginService, public dialog: MatDialog, private matSnackBar: MatSnackBar) { }
 

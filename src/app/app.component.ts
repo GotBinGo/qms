@@ -55,7 +55,6 @@ export class AppComponent implements OnInit {
         }
       });
     } else if (e.index === 1 && this.isLogin) {
-      // this.loginService.getHistory();
     }
   }
 

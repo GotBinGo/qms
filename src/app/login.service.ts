@@ -8,10 +8,7 @@ import { Observable, of, BehaviorSubject } from 'rxjs';
 export class LoginService {
 
   constructor(private http: HttpClient) {
-    this.onHistoryChange = new BehaviorSubject([]);
   }
-
-  onHistoryChange: BehaviorSubject<any>;
 
   login(email, password) {
     return this.http.post<any>('../api/auth/login', {email, password});
@@ -45,11 +42,6 @@ export class LoginService {
 
   cancelNumber(numberId) {
     return this.http.post<any>('../api/auth/cancelNumber', {id: numberId});
-  }
-
-
-  getHistory() {
-    return this.http.get<any>('../api/auth/history').subscribe(x => this.onHistoryChange.next(x));
   }
 
   getOrgs() {
