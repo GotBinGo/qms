@@ -30,14 +30,18 @@ exports.getLatestNumber = async (req, res, next) => {
 
 exports.cancelNumber = async (req, res, next) => {
     var a = await Num.findOne({_id: req.body.id}, {}, {sort: { 'createdAt' : -1 }});
-    a.status = "done";
+    if(a) {
+        a.status = "done";
+    }
     await a.save()
     res.json(a);
 }
 
 exports.getNextNumber = async (req, res, next) => {
     var a = await Num.findOne({org: req.body.org, status: 'waiting', case: { "$in": req.body.cases}}, null, {sort: { 'createdAt' : -1 }});
-    a.status = "processing"
+    if(a) {
+        a.status = "processing"
+    }
     a.save();
     res.json(a);
 }
