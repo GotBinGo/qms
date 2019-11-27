@@ -24,6 +24,7 @@ export class NewNumberComponent implements OnInit, OnDestroy {
 
   org;
   number;
+  done = false;
 
   @Input() login = null;
   @Output() oLogin = new EventEmitter<void>();
@@ -44,8 +45,11 @@ export class NewNumberComponent implements OnInit, OnDestroy {
 
     this.timer = setInterval(_ => {
       if (this.login && (this.number || this.number === undefined)) {
-        this.loginService.getLatestNumber().subscribe(x => {
+        this.loginService.getLatestNumber(this.number ? this.number._id : null).subscribe(x => {
           this.number = x;
+          if (x && x.status === 'done') {
+            this.done = true;
+          }
         });
         if (this.orgs.length === 0) {
           this.loginService.getOrgs().subscribe(a => {

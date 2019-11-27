@@ -30,7 +30,7 @@ router.get('/secret2', auth(['admin']), (req, res) => {
   res.json({ message: 'Only admin can access' })
 })
 router.post('/getNewNumber', auth(['guest', 'user', 'worker', 'admin']), eventController.getNewNumber)
-router.get('/getLatestNumber', auth(['guest', 'user', 'worker', 'admin']), eventController.getLatestNumber)
+router.post('/getLatestNumber', auth(['guest', 'user', 'worker', 'admin']), eventController.getLatestNumber)
 router.post('/cancelNumber', auth(['guest', 'user', 'worker', 'admin']), eventController.cancelNumber)
 
 router.get('/getOrgs', auth(['guest', 'user', 'worker', 'admin']), orgController.getOrgs)

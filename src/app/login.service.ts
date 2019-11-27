@@ -32,8 +32,8 @@ export class LoginService {
     return of(true);
   }
 
-  getLatestNumber() {
-    return this.http.get<any>('../api/auth/getLatestNumber');
+  getLatestNumber(id) {
+    return this.http.post<any>('../api/auth/getLatestNumber', {id});
   }
 
   getNewNumber(caseNumber, orgNumber) {

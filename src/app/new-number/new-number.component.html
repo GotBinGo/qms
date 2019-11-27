@@ -44,7 +44,7 @@
 
 
 <div class="" *ngIf="number && login">
-  <mat-card *ngIf="!reading" class="mt-1 vertical-center" style="max-width: 800px;">
+  <mat-card *ngIf="!reading && !done" class="mt-1 vertical-center" style="max-width: 800px;">
     <h4 class="mb-3 mt-3">You are waiting in line</h4>
     <h4 *ngIf="number && number.status && number.status == 'waiting'" class="mb-3 mt-3">Please Wait!</h4>
     <h4 *ngIf="number && number.status && number.status == 'waiting'" class="mb-3 mt-3">About {{number.timeToGo}} minutes to go.</h4>
@@ -55,6 +55,12 @@
     <button (click)="cancelNumber()" mat-raised-button color="warn" class="float-right">Cancel Number</button>
     <div class="mb-5"></div>
   </mat-card>
+  <mat-card *ngIf="!reading && done" class="mt-1 vertical-center" style="max-width: 800px;">
+    <h4 class="mb-3 mt-3">See you later.</h4>
+    <mat-icon style="font-size: 80px; text-align: center; color: green; width: 100%;" class="qms-tab-icon">thumb_up</mat-icon>
+
+  </mat-card>
+
 </div>
   
 

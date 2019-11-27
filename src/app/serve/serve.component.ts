@@ -66,7 +66,9 @@ export class ServeComponent implements OnInit, OnDestroy {
   }
 
   next() {
-    this.number = null;
+    this.loginService.cancelNumber(this.number._id).subscribe(x => {
+      this.number = null;
+    });
   }
 
   ngOnDestroy() {
