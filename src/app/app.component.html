@@ -15,7 +15,7 @@
       <app-history></app-history>
     </ng-template>
 </mat-tab>
-  <mat-tab label="Instruction">
+  <mat-tab *ngIf="isLogin">
     <ng-template mat-tab-label>
       <div class="nav-bar-label">Serve</div>
     </ng-template>

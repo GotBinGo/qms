@@ -21,11 +21,11 @@
             <input type="password" [(ngModel)]="regPassword" matInput placeholder="Password" name="password" autocomplete="new-password">
         </mat-form-field>
         <mat-form-field>
-                <input matInput  [(ngModel)]="regNick" placeholder="Display name" name="display_name">
+                <input matInput [(ngModel)]="regNick" placeholder="Display name" name="display_name">
         </mat-form-field>
         <div>
-            <button (click)="register = false" mat-raised-button color="" class="float-left">Already signed up</button>
             <button (click)="onRegister()" mat-raised-button color="primary" class="float-right">Register</button>
+            <button (click)="register = false" mat-raised-button color="" class="float-left">Already signed up</button>
         </div>
     </form>
 </mat-card>
