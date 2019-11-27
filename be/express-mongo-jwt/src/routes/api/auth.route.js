@@ -29,7 +29,6 @@ router.get('/secret2', auth(['admin']), (req, res) => {
   // example route for auth
   res.json({ message: 'Only admin can access' })
 })
-router.get('/history', auth(['guest', 'user', 'worker', 'admin']), eventController.history)
 router.post('/getNewNumber', auth(['guest', 'user', 'worker', 'admin']), eventController.getNewNumber)
 router.get('/getLatestNumber', auth(['guest', 'user', 'worker', 'admin']), eventController.getLatestNumber)
 router.post('/cancelNumber', auth(['guest', 'user', 'worker', 'admin']), eventController.cancelNumber)

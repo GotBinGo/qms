@@ -8,7 +8,6 @@ exports.getOrgs = async (req, res, next) => {
 }
 
 exports.addOrg = async (req, res, next) => {
-  console.log('XXXXXXXXXXXXXXXXXXXx')
   try {
     const o = await Org.findOne({}, null, {sort: { 'org' : -1 }});
     const n = (o && o.org+1) || 0;
