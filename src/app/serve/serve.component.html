@@ -1,0 +1,15 @@
+<mat-card class="mt-4 vertical-center" style="max-width: 800px;">
+    <h3 *ngIf="user">Serving as {{user.name}}</h3>
+    <button *ngIf="status == 'start' || status == 'pause'" (click)="start()" class="w-100 pt-1 pb-1 mt-2 mb-2" mat-raised-button color="primary" >Start</button>
+    <button *ngIf="status == 'serving'" (click)="pause()" class="w-100 pt-1 pb-1 mt-2 mb-2" mat-raised-button color="warn" >Pause</button>
+
+    <div *ngIf="status == 'serving' && !number" style="align-items: center; display: flex; flex-direction: column;">
+            <mat-spinner style="display: flex; justify-content: center;"></mat-spinner>
+    </div>
+    <mat-card *ngIf="number">
+        <h3>Current number</h3>
+        <p>{{number | json}}</p>
+    </mat-card>
+    <button *ngIf="number" (click)="next()" class="w-100 pt-1 pb-1 mt-2 mb-2" mat-raised-button color="primary" >Next</button>
+
+</mat-card>

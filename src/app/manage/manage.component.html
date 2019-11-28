@@ -1,0 +1,60 @@
+
+
+<div class="mt-4">
+  <mat-card class="vertical-center p-1" style="max-width: 800px;">
+    <div class="vertical-center white" style="max-width: 800px;">
+      <mat-tab-group>
+        <mat-tab class="" label="Organizations">
+          <div class="p-4" *ngIf="selectedOrgIndex === null">
+            <div>
+              <button (click)="add()" class="float-right" mat-mini-fab color="accent" >+</button>
+              <h3>Manage organizations</h3>
+            </div>
+            <div class="row" *ngIf="true">
+              <div class="col-12">
+                <!-- <button (click)="add()" class="w-100 pt-1 pb-1 mt-2 mb-2" mat-raised-button color="" >Add new</button> -->
+                <button *ngFor="let i of objectKeys(orgs)" (click)="onOrgSelect(i)" class="w-100 pt-1 pb-1 mt-2 mb-2" mat-raised-button color="primary" >{{orgs[i].name}}</button>
+              </div>
+            </div>
+          </div>
+          <div class="p-4" *ngIf="selectedOrgIndex !== null">
+              <div class="">
+                <h3 style="max-width: calc(100% - 100px);" class="float-left">Cases for {{orgs[selectedOrgIndex].name}}</h3>
+                <button (click)="back()" class="float-left ml-3" mat-mini-fab color="" >
+                    <mat-icon class="qms-tab-icon">arrow_back</mat-icon>
+                </button>
+                <button (click)="addCase()" class="float-right" mat-mini-fab color="accent" >+</button>
+              </div>
+              <div class="row w-100" ></div>
+              <div class="row" >
+                <div class="col-12">
+                  <p *ngIf="!objectKeys(cases).length" class="w-100 mt-3">No cases here.</p>
+                  <!-- <button (click)="add()" class="w-100 pt-1 pb-1 mt-2 mb-2" mat-raised-button color="" >Add new</button> -->
+                  <button *ngFor="let i of objectKeys(cases)" class="w-100 pt-1 pb-1 mt-2 mb-2" mat-raised-button color="primary" >{{cases[i].name}}</button>
+                </div>
+              </div>
+            </div>
+        </mat-tab>
+        <mat-tab label="Users">
+          <div class="p-4">
+              <div class="mb-2">
+                <mat-chip-list>
+                    <h3 class="mr-2">Manage users</h3>
+                    <mat-chip color="">guest</mat-chip>
+                    <mat-chip color="primary" selected>user</mat-chip>
+                    <mat-chip color="accent" selected>worker</mat-chip>
+                    <mat-chip color="warn" selected>admin</mat-chip>
+                  </mat-chip-list>
+              </div>
+              <div class="row" *ngIf="true">
+                <div class="col-12">
+                  <button *ngFor="let i of objectKeys(users)" (click)="onUserSelect(i)" class="w-100 pt-1 pb-1 mt-2 mb-2" mat-raised-button color="{{ users[i].role == 'admin' ? 'warn' : (users[i].role == 'worker' ? 'accent' : (users[i].role == 'user' ? 'primary' : '')) }}" >{{users[i].name}}</button>
+                </div>
+              </div>
+            </div>
+        </mat-tab>
+      </mat-tab-group>
+    </div>  
+  </mat-card>
+</div>
+

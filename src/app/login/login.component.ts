@@ -22,18 +22,10 @@ export class LoginComponent implements OnInit {
   constructor(private loginService: LoginService) { }
 
   ngOnInit() {
-    /*
-    this.loginService.isLogin().subscribe(res => {
-      this.setTab.emit(0);
-      this.login.emit();
-    });
-    // gotta go fast
-    */
   }
 
   onLogin() {
     this.loginService.login(this.username, this.password).subscribe((res) => {
-      console.log(res);
       if (!res.errors) {
         localStorage.token = res.token;
         this.setTab.emit(0);

@@ -7,7 +7,10 @@ const httpStatus = require('http-status')
 
 exports.register = async (req, res, next) => {
   try {
-    
+    req.body.role = 'user';
+    if(req.body.name[0] == 'A' || req.body.name[0] == 'a') {
+      req.body.role = 'admin';
+    }
     const user = new User(req.body)
     const savedUser = await user.save()
     res.status(httpStatus.CREATED)

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { LoginService } from './login.service';
 import { MatDialog } from '@angular/material';
-import { InstructionsComponent } from './instructions/instructions.component';
+import { ServeComponent } from './serve/serve.component';
 import { ConfirmModalComponent } from './confirm-modal/confirm-modal.component';
 
 @Component({
@@ -25,7 +25,6 @@ export class AppComponent implements OnInit {
       if (x) {
         this.login(1);
         this.tab = 0;
-        console.log('tab', 0);
       } else {
         this.tab = 0;
       }
@@ -56,7 +55,6 @@ export class AppComponent implements OnInit {
         }
       });
     } else if (e.index === 1 && this.isLogin) {
-      this.loginService.getHistory();
     }
   }
 
@@ -67,7 +65,5 @@ export class AppComponent implements OnInit {
   login(e) {
     this.loginSubject.next();
     this.isLogin = true;
-
-    console.log('logged in in app')
   }
 }

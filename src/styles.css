@@ -6,8 +6,16 @@ div:last-of-type.mat-tab-label {
     margin-left: auto;
 }
 
+.white div:last-of-type.mat-tab-label {
+    margin-left: 0;
+}
+
 mat-tab-header {
     background-color: #7999c0;
+}
+
+.white mat-tab-header {
+    background-color: #ffffff;
 }
 
 body {

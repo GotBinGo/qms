@@ -1,0 +1,7 @@
+<h3>{{title}}</h3>
+<p>{{text}}</p>
+<mat-form-field class="w-100">
+    <input (keydown.enter)="ok()" matInput placeholder="Name" [(ngModel)]="value">
+</mat-form-field>
+<button (click)="ok()" mat-raised-button color="primary" class="float-right">Add</button>
+<button (click)="cancel()" mat-raised-button color="warn" class="">Cancel</button>

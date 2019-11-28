@@ -8,10 +8,7 @@ import { Observable, of, BehaviorSubject } from 'rxjs';
 export class LoginService {
 
   constructor(private http: HttpClient) {
-    this.onHistoryChange = new BehaviorSubject([]);
   }
-
-  onHistoryChange: BehaviorSubject<any>;
 
   login(email, password) {
     return this.http.post<any>('../api/auth/login', {email, password});
@@ -35,8 +32,8 @@ export class LoginService {
     return of(true);
   }
 
-  getLatestNumber() {
-    return this.http.get<any>('../api/auth/getLatestNumber');
+  getLatestNumber(id) {
+    return this.http.post<any>('../api/auth/getLatestNumber', {id});
   }
 
   getNewNumber(caseNumber, orgNumber) {
@@ -47,17 +44,12 @@ export class LoginService {
     return this.http.post<any>('../api/auth/cancelNumber', {id: numberId});
   }
 
-
-  getHistory() {
-    return this.http.get<any>('../api/auth/history').subscribe(x => this.onHistoryChange.next(x));
-  }
-
   getOrgs() {
     return this.http.get<any>('../api/auth/getOrgs');
   }
 
-  addOrg(orgName, orgID) {
-    return this.http.post<any>('../api/auth/addOrg', {name: orgName, org: orgID});
+  addOrg(orgName) {
+    return this.http.post<any>('../api/auth/addOrg', {name: orgName});
   }
 
   deleteOrgByNum(orgID) {
@@ -82,5 +74,17 @@ export class LoginService {
 
   deleteCaseByName(orgID, caseName) {
     return this.http.post<any>('../api/auth/deleteCaseByName', {org: orgID, name: caseName});
+  }
+
+  getUsers() {
+    return this.http.get<any>('../api/auth/getUsers');
+  }
+
+  setUser(id, role, org) {
+    return this.http.post<any>('../api/auth/setUser', {id, role, org});
+  }
+
+  getNextNumber(org, cases) {
+    return this.http.post<any>('../api/auth/getNextNumber', {org: org, cases});
   }
 }

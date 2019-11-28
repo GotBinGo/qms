@@ -11,7 +11,9 @@ exports.getCases = async (req, res, next) => {
 
 exports.addCase = async (req, res, next) => {
   try {
-    var a = (await Case.insertMany([{name: req.body.name, org: req.body.org, case: req.body.case}]))[0]
+    const o = await Case.findOne({}, null, {sort: { 'case' : -1 }});
+    const n = (o && o.case+1) || 0;
+    var a = (await Case.insertMany([{name: req.body.name, org: req.body.org, case: n}]))[0]
     a.user = a.user._id;
     res.json(a);
   } catch(e) {
@@ -21,8 +23,7 @@ exports.addCase = async (req, res, next) => {
 
 exports.deleteCaseByNum = async (req, res, next) => {
   try {
-    var a = (await Org.deleteOne({org: req.body.org, case: req.body.case}))[0]
-    a.user = a.user._id;
+    var a = (await Case.deleteOne({org: req.body.org, case: req.body.case}));
     res.json(a);
   } catch(e) {
     res.json(e);
@@ -31,8 +32,7 @@ exports.deleteCaseByNum = async (req, res, next) => {
 
 exports.deleteCaseByName = async (req, res, next) => {
   try {
-    var a = (await Org.deleteOne({org: req.body.org, name: req.body.name}))[0]
-    a.user = a.user._id;
+    var a = (await Case.deleteOne({org: req.body.org, name: req.body.name}));
     res.json(a);
   } catch(e) {
     res.json(e);

@@ -1,0 +1,20 @@
+<form (ngSubmit)="ok()">
+  <h3>{{title}}</h3>
+  <p>{{text}}</p>
+  <mat-form-field class="w-100">
+    <mat-select [(ngModel)]="value" name="role">
+      <mat-option value="guest">guest</mat-option>
+      <mat-option value="user">user</mat-option>
+      <mat-option value="worker">worker</mat-option>
+      <mat-option value="admin">admin</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field class="w-100">
+    <mat-select #org="ngModel" id="org" [(ngModel)]="orgValue" name="org" required="{{ value == 'worker' }}" placeholder="Organization">
+      <mat-option *ngFor="let i of objectKeys(orgs)" [value]="orgs[i].org">{{orgs[i].name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <button type="submit" mat-raised-button color="primary" class="float-right">Ok</button>
+  <button (click)="cancel()" mat-raised-button color="warn" class="">Cancel</button>
+</form>

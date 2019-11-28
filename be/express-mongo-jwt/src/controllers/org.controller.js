@@ -9,7 +9,9 @@ exports.getOrgs = async (req, res, next) => {
 
 exports.addOrg = async (req, res, next) => {
   try {
-    var a = (await Org.insertMany([{name: req.body.name, org: req.body.org}]))[0]
+    const o = await Org.findOne({}, null, {sort: { 'org' : -1 }});
+    const n = (o && o.org+1) || 0;
+    var a = (await Org.insertMany([{name: req.body.name, org: n}]))[0]
     a.user = a.user._id;
     res.json(a);
   } catch(e) {
@@ -19,8 +21,7 @@ exports.addOrg = async (req, res, next) => {
 
 exports.deleteOrgByNum = async (req, res, next) => {
   try {
-    var a = (await Org.deleteOne({org: req.body.org}))[0]
-    a.user = a.user._id;
+    var a = (await Org.deleteOne({org: req.body.org}))
     res.json(a);
   } catch(e) {
     res.json(e);
@@ -29,8 +30,7 @@ exports.deleteOrgByNum = async (req, res, next) => {
 
 exports.deleteOrgByName = async (req, res, next) => {
   try {
-    var a = (await Org.deleteOne({name: req.body.name}))[0]
-    a.user = a.user._id;
+    var a = (await Org.deleteOne({name: req.body.name}))
     res.json(a);
   } catch(e) {
     res.json(e);

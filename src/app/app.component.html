@@ -1,4 +1,4 @@
-<mat-tab-group (selectedTabChange)="onTabChange($event)" [selectedIndex]="tab == 0 ? 0 : (tab || 0)" class="demo-tab-group" dynamicHeight>
+<mat-tab-group (selectedTabChange)="onTabChange($event)" [selectedIndex]="tab == 0 ? 0 : (tab || 0)" class="demo-tab-group lastright" dynamicHeight>
   <mat-tab>
     <ng-template mat-tab-label>
       <div class="nav-bar-label">Get a Number</div>
@@ -9,15 +9,20 @@
   </mat-tab>
   <mat-tab *ngIf="isLogin">
     <ng-template mat-tab-label>
-      <div class="nav-bar-label">History</div>
+      <div class="nav-bar-label">Manage</div>
     </ng-template>
-    <app-history></app-history>
-  </mat-tab>
-  <mat-tab label="Instruction">
+    <ng-template matTabContent>
+      <app-manage></app-manage>
+    </ng-template>
+</mat-tab>
+  <mat-tab *ngIf="isLogin">
     <ng-template mat-tab-label>
-      <div class="nav-bar-label">Instructions</div>
+      <div class="nav-bar-label">Serve</div>
     </ng-template>
-    <app-instructions></app-instructions>
+    <ng-template matTabContent>
+      <app-serve></app-serve>
+    </ng-template>
+
   </mat-tab>
   <mat-tab>
     <ng-template mat-tab-label>

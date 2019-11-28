@@ -6,7 +6,7 @@ const APIError = require('../utils/APIError')
 const Schema = mongoose.Schema
 
 const roles = [
-  'user', 'admin'
+  'guest', 'user', 'worker', 'admin'
 ]
 
 const userSchema = new Schema({
@@ -24,12 +24,17 @@ const userSchema = new Schema({
   },
   name: {
     type: String,
-    maxlength: 50
+    maxlength: 50,
+    unique: true,
+    required: true,
   },
   role: {
     type: String,
-    default: 'user',
+    default: 'guest',
     enum: roles
+  },
+  org: {
+    type: Number,
   }
 }, {
   timestamps: true

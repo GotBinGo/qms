@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter, OnDestroy } from '@angu
 import { LoginService } from '../login.service';
 import { FormControl } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-new-number',
@@ -9,7 +10,7 @@ import { MatSnackBar } from '@angular/material';
   styleUrls: ['./new-number.component.css']
 })
 export class NewNumberComponent implements OnInit, OnDestroy {
-  constructor(private loginService: LoginService, private matSnackBar: MatSnackBar) { }
+  constructor(private loginService: LoginService, private matSnackBar: MatSnackBar, private route: Router, private ar: ActivatedRoute) { }
   dot = '.';
   endingControl = new FormControl('');
   name = '';
@@ -23,6 +24,7 @@ export class NewNumberComponent implements OnInit, OnDestroy {
 
   org;
   number;
+  done = false;
 
   @Input() login = null;
   @Output() oLogin = new EventEmitter<void>();
@@ -42,22 +44,33 @@ export class NewNumberComponent implements OnInit, OnDestroy {
     this.reading = false;
 
     this.timer = setInterval(_ => {
-      if (this.login) {
-        this.loginService.getLatestNumber().subscribe(x => {
+      if (this.login && (this.number || this.number === undefined)) {
+        this.loginService.getLatestNumber(this.number ? this.number._id : null).subscribe(x => {
           this.number = x;
+          if (x && x.status === 'done') {
+            this.done = true;
+          }
         });
+        if (this.orgs.length === 0) {
+          this.loginService.getOrgs().subscribe(a => {
+            this.orgs = a;
+            setTimeout(x => {
+              if (this.route.url === '/') {
+              } else {
+                this.onOrgSelect(this.route.url.split('/')[this.route.url.split('/').length - 1]);
+              }
+            }, 1);
+          });
+        }
       }
     }, 1000);
 
-    this.loginService.getOrgs().subscribe(a => {
-      this.orgs = a;
-    });
 
-    // this.onCodeResult('123-112-132'); // TODO mock
   }
 
 
   ngOnDestroy() {
+    this.route.navigate(['/']);
     clearInterval(this.timer);
   }
 
@@ -66,7 +79,12 @@ export class NewNumberComponent implements OnInit, OnDestroy {
   }
 
   onOrgSelect(n) {
+    if (!this.orgs[n]) {
+      this.matSnackBar.open('Invalid URL.', '', { duration: 2000 });
+      return;
+    }
     this.org = n;
+    this.route.navigate(['/', this.orgs[this.org].org]);
     this.loginService.getCases(this.orgs[this.org].org).subscribe(x => {
       this.cases = x;
     });
@@ -80,22 +98,13 @@ export class NewNumberComponent implements OnInit, OnDestroy {
         this.number = null;
       }
     });
-    // get number with n (case index)
-
-    // this.loginService.getBike(this.endingControl.value).subscribe(x => {
-    //   console.log(x);
-    // });
   }
 
   onCodeResult(x) {
     this.reading = false;
     x = x.split('/')[x.split('/').length - 1];
-    this.org = x;
+    this.onOrgSelect(x);
     this.matSnackBar.open(x, '', { duration: 2000 });
-    // setTimeout(() => {
-    //   this.qrResult = '';
-    //   this.reading = true;
-    // }, 5000);
   }
 
   flash() {
@@ -111,9 +120,7 @@ export class NewNumberComponent implements OnInit, OnDestroy {
   }
 
   guest() {
-    console.log('');
     this.loginService.guest().subscribe((res) => {
-      console.log(res);
       if (!res.errors) {
         localStorage.token = res.token;
         this.oLogin.emit();
@@ -123,5 +130,11 @@ export class NewNumberComponent implements OnInit, OnDestroy {
 
   logIn() {
     this.setTab.emit(2);
+  }
+
+  back() {
+    this.org = null;
+    this.cases = [];
+    this.route.navigate(['/']);
   }
 }

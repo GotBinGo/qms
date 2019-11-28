@@ -4,17 +4,33 @@
     <form  ngSubmit="emailLogin()" class="example-container">
       <!-- <h4 class="mb-3 mt-3">{{qrResult}}</h4> -->
 
+      <div *ngIf="!org">
+        <h3 class="float-left">Pick an organization</h3>
+        <button (click)="reading = true" class="float-right" mat-mini-fab color="accent" >
+          <mat-icon class="qms-tab-icon">camera_alt</mat-icon>
+        </button>
+      </div>
+
       <div class="row" *ngIf="!org">
         <div class="col-12">
-          <button (click)="reading = true" class="w-100 pt-1 pb-1 mt-2 mb-2" mat-raised-button color="primary" >Scan Organization Code </button>
+          <!-- <button (click)="reading = true" class="w-100 pt-1 pb-1 mt-2 mb-2" mat-raised-button color="primary" >Scan Organization Code </button> -->
+          <!-- <h3 class="float-left">{{orgs[org].name}}</h3> -->
 
           <button *ngFor="let i of objectKeys(orgs)" (click)="onOrgSelect(i)" class="w-100 pt-1 pb-1 mt-2 mb-2" mat-raised-button color="" >{{orgs[i].name}}</button>
         </div>
       </div>
 
+
+      <div *ngIf="org">
+        <h3 class="float-left">{{orgs[org].name}}</h3>
+        <button (click)="back()" class="float-right ml-3" mat-mini-fab color="" >
+            <mat-icon class="qms-tab-icon">arrow_back</mat-icon>
+        </button>
+      </div>
+
       <div class="row" *ngIf="org">
         <div class="col-12">
-            <h4 class="mb-3 mt-3">{{orgs[org].name}}</h4>
+          <p *ngIf="!objectKeys(cases).length" class="w-100 mt-3">No cases here.</p>
           <button *ngFor="let i of objectKeys(cases)" (click)="onNewNumber(cases[i].case)" class="w-100 pt-1 pb-1 mt-2 mb-2" mat-raised-button color="primary" >{{cases[i].name}}</button>
         </div>
       </div>
@@ -27,11 +43,11 @@
 
 
 
-<div class="" *ngIf="number !== null && login">
-  <mat-card *ngIf="!reading" class="mt-1 vertical-center" style="max-width: 800px;">
+<div class="" *ngIf="number && login">
+  <mat-card *ngIf="!reading && !done" class="mt-1 vertical-center" style="max-width: 800px;">
     <h4 class="mb-3 mt-3">You are waiting in line</h4>
     <h4 *ngIf="number && number.status && number.status == 'waiting'" class="mb-3 mt-3">Please Wait!</h4>
-    <h4 *ngIf="number && number.status && number.status == 'waiting'" class="mb-3 mt-3">About X minutes to go.</h4>
+    <h4 *ngIf="number && number.status && number.status == 'waiting'" class="mb-3 mt-3">About {{number.timeToGo}} minutes to go.</h4>
     <h4 *ngIf="number && number.status && number.status == 'processing'" style="color: green;" class="mb-3 mt-3">You are on!!!</h4>
 
     {{number | json}}
@@ -39,6 +55,12 @@
     <button (click)="cancelNumber()" mat-raised-button color="warn" class="float-right">Cancel Number</button>
     <div class="mb-5"></div>
   </mat-card>
+  <mat-card *ngIf="!reading && done" class="mt-1 vertical-center" style="max-width: 800px;">
+    <h4 class="mb-3 mt-3">See you later.</h4>
+    <mat-icon style="font-size: 80px; text-align: center; color: green; width: 100%;" class="qms-tab-icon">thumb_up</mat-icon>
+
+  </mat-card>
+
 </div>
   
 
