@@ -53,6 +53,7 @@
     {{number | json}}
     <div class="mt-2"></div>
     <button (click)="cancelNumber()" mat-raised-button color="warn" class="float-right">Cancel Number</button>
+    <button (click)="delayNumber()" mat-raised-button color="warn" class="float-left">Delay Number</button>
     <div class="mb-5"></div>
   </mat-card>
   <mat-card *ngIf="!reading && done" class="mt-1 vertical-center" style="max-width: 800px;">
