@@ -45,3 +45,12 @@ exports.getNextNumber = async (req, res, next) => {
     }
     res.json(a);
 }
+
+exports.delayNumber = async (req, res, next) => {
+    var a = await Num.findOne({_id: req.body.id});
+    if(a) {
+        a.delay = (a.delay || 0) + 1;
+        await a.save()
+    }
+    res.json(a);
+}

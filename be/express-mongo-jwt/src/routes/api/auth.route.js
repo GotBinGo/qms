@@ -31,6 +31,7 @@ router.get('/secret2', auth(['admin']), (req, res) => {
 })
 router.post('/getNewNumber', auth(['guest', 'user', 'worker', 'admin']), eventController.getNewNumber)
 router.post('/getLatestNumber', auth(['guest', 'user', 'worker', 'admin']), eventController.getLatestNumber)
+router.post('/delayNumber', auth(['guest', 'user', 'worker', 'admin']), eventController.delayNumber)
 router.post('/cancelNumber', auth(['guest', 'user', 'worker', 'admin']), eventController.cancelNumber)
 
 router.get('/getOrgs', auth(['guest', 'user', 'worker', 'admin']), orgController.getOrgs)

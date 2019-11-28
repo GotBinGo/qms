@@ -23,6 +23,10 @@ const numberSchema = new Schema({
     default: 'waiting',
     enum: statusList
   },
+  delay: {
+    type: Number,
+    default: 0,
+  },
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'

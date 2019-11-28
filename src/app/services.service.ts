@@ -44,6 +44,10 @@ export class ServicesService {
     return this.http.post<any>('../api/auth/cancelNumber', {id: numberId});
   }
 
+  delayNumber(numberId) {
+    return this.http.post<any>('../api/auth/delayNumber', {id: numberId});
+  }
+
   getOrgs() {
     return this.http.get<any>('../api/auth/getOrgs');
   }

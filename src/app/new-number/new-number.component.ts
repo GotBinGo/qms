@@ -124,7 +124,9 @@ export class NewNumberComponent implements OnInit, OnDestroy {
   }
 
   delayNumber() {
-    // delay
+    this.servicesService.delayNumber(this.number._id).subscribe(x => {
+
+    });
   }
 
   guest() {
