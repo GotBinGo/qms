@@ -1,14 +1,21 @@
 <div>
 
     <h3>Select the cases you can serve.</h3>
-    <div class="mt-3 mb-3">
-        <div *ngFor="let i of objectKeys(cases)" class="row">
-            <div class="col-4"></div>
-            <div  class="col-2">
+
+    <div style="text-align: center;">
+        <div class="w-50 mt-3 mb-3" style="display: inline-block;padding-left: 1rem;">
+            <div *ngFor="let i of objectKeys(cases)" class="row">
                 <mat-checkbox  class="example-margin" [(ngModel)]="cases[i].selected">{{cases[i].name}}</mat-checkbox>
             </div>
         </div>
     </div>
+    <div style="text-align: center;">
+        <mat-form-field class="w-50 mb-3">
+            <input (keydown.enter)="ok()" matInput placeholder="Where to go?" [(ngModel)]="value">
+        </mat-form-field>
+    </div>
+
+
     <button (click)="ok()" mat-raised-button color="primary" class="float-right">Ok</button>
     <button (click)="cancel()" mat-raised-button color="warn" class="">Cancel</button>
 </div>

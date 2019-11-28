@@ -46,10 +46,10 @@ export class NewNumberComponent implements OnInit, OnDestroy {
     this.reading = false;
 
     this.timer = setInterval(_ => {
-      if (this.login && (this.number || this.number === undefined)) {
+      if (this.login && (this.number || this.number === undefined) && (!this.number || this.number && this.number.status !== 'done')) {
         this.servicesService.getLatestNumber(this.number ? this.number._id : null).subscribe(x => {
           this.number = x;
-          if (x && x.status === 'done') {
+          if (x && x.status === 'done' && this.number) {
             this.done = true;
           }
         });
@@ -116,10 +116,12 @@ export class NewNumberComponent implements OnInit, OnDestroy {
 
   cancelNumber() {
     this.servicesService.cancelNumber(this.number._id).subscribe(x => {
-      this.servicesService.getLatestNumber(null).subscribe(y => {
-        // this.number = y;
-        this.number = null;
-      });
+      this.number = null;
+      this.done = false;
+      // this.servicesService.getLatestNumber(null).subscribe(y => {
+      //   // this.number = y;
+      //   this.number = null;
+      // });
     });
   }
 
@@ -146,5 +148,10 @@ export class NewNumberComponent implements OnInit, OnDestroy {
     this.org = null;
     this.cases = [];
     this.route.navigate(['/']);
+  }
+
+  thumbs() {
+    this.done = false;
+    this.number = undefined;
   }
 }

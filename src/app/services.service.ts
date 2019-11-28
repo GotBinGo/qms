@@ -88,7 +88,7 @@ export class ServicesService {
     return this.http.post<any>('../api/auth/setUser', {id, role, org});
   }
 
-  getNextNumber(org, cases) {
-    return this.http.post<any>('../api/auth/getNextNumber', {org: org, cases});
+  getNextNumber(org, cases, whereToGo) {
+    return this.http.post<any>('../api/auth/getNextNumber', {org, cases, whereToGo});
   }
 }

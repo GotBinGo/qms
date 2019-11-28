@@ -17,6 +17,7 @@ export class ServeComponent implements OnInit, OnDestroy {
 
   timer;
   cases = [];
+  whereToGo = 'counter';
 
   number = null;
 
@@ -35,10 +36,12 @@ export class ServeComponent implements OnInit, OnDestroy {
     this.timer = setInterval(_ => {
       // serve
       if (this.status === 'serving' && !this.number) {
-        this.servicesService.getNextNumber(this.user.org, this.cases.filter(x => x.selected).map(x => x.case)).subscribe(x => {
-          if (x) {
-            this.number = x;
-          }
+        this.servicesService.getNextNumber(this.user.org,
+          this.cases.filter(x => x.selected).map(x => x.case),
+          this.whereToGo).subscribe(x => {
+            if (x) {
+              this.number = x;
+            }
         });
       }
     }, 1000);
@@ -48,12 +51,13 @@ export class ServeComponent implements OnInit, OnDestroy {
     const dialogRef = this.dialog.open(CasePickerModalComponent, {
       width: '80%',
       maxWidth: '500px',
-      data: {cases: this.cases}
+      data: {cases: this.cases, whereToGo: this.whereToGo}
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result && result.some(x => x.selected)) {
-        this.cases = result;
+      if (result) {
+        this.cases = result.cases;
+        this.whereToGo = result.whereToGo;
         this.status = 'serving';
       }
     });
@@ -73,6 +77,10 @@ export class ServeComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     clearInterval(this.timer);
+  }
+
+  get diff() {
+    return Math.trunc((+new Date() - +new Date(this.number.createdAt)) / 1000 / 60);
   }
 
 }

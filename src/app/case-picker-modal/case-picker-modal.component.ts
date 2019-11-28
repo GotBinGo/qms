@@ -12,9 +12,11 @@ export class CasePickerModalComponent implements OnInit {
   objectKeys = Object.keys;
 
   cases;
+  value;
 
   ngOnInit() {
     this.cases = this.data.cases;
+    this.value = this.data.whereToGo;
     this.cases = this.cases.map(x => {
       x.selected = true;
       return x;
@@ -22,7 +24,7 @@ export class CasePickerModalComponent implements OnInit {
   }
 
   ok() {
-    this.dialogRef.close(this.cases);
+    this.dialogRef.close({cases: this.cases, whereToGo: this.value});
   }
 
   cancel() {

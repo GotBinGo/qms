@@ -3,7 +3,7 @@
 const express = require('express')
 const router = express.Router()
 const authController = require('../../controllers/auth.controller')
-const eventController = require('../../controllers/event.controller')
+const numberController = require('../../controllers/number.controller')
 const orgController = require('../../controllers/org.controller')
 const caseController = require('../../controllers/case.controller')
 const userController = require('../../controllers/user.controller')
@@ -29,10 +29,11 @@ router.get('/secret2', auth(['admin']), (req, res) => {
   // example route for auth
   res.json({ message: 'Only admin can access' })
 })
-router.post('/getNewNumber', auth(['guest', 'user', 'worker', 'admin']), eventController.getNewNumber)
-router.post('/getLatestNumber', auth(['guest', 'user', 'worker', 'admin']), eventController.getLatestNumber)
-router.post('/delayNumber', auth(['guest', 'user', 'worker', 'admin']), eventController.delayNumber)
-router.post('/cancelNumber', auth(['guest', 'user', 'worker', 'admin']), eventController.cancelNumber)
+router.post('/getNewNumber', auth(['guest', 'user', 'worker', 'admin']), numberController.getNewNumber)
+router.post('/getLatestNumber', auth(['guest', 'user', 'worker', 'admin']), numberController.getLatestNumber)
+router.post('/delayNumber', auth(['guest', 'user', 'worker', 'admin']), numberController.delayNumber)
+router.post('/cancelNumber', auth(['guest', 'user', 'worker', 'admin']), numberController.cancelNumber)
+router.post('/getNextNumber', auth(['guest', 'user', 'worker', 'admin']), numberController.getNextNumber)
 
 router.get('/getOrgs', auth(['guest', 'user', 'worker', 'admin']), orgController.getOrgs)
 router.post('/addOrg', auth(['guest', 'user', 'worker', 'admin']), orgController.addOrg)
@@ -47,7 +48,6 @@ router.post('/deleteCaseByName', auth(['guest', 'user', 'worker', 'admin']), cas
 router.get('/getUsers', auth(['guest', 'user', 'worker', 'admin']), userController.getUsers)
 router.post('/setUser', auth(['guest', 'user', 'worker', 'admin']), userController.setUser)
 
-router.post('/getNextNumber', auth(['guest', 'user', 'worker', 'admin']), eventController.getNextNumber)
 
 
 module.exports = router

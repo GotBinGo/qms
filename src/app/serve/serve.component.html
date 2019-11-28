@@ -6,9 +6,11 @@
     <div *ngIf="status == 'serving' && !number" style="align-items: center; display: flex; flex-direction: column;">
             <mat-spinner style="display: flex; justify-content: center;"></mat-spinner>
     </div>
-    <mat-card *ngIf="number">
+    <mat-card class="mt-3 mb-3" *ngIf="number">
         <h3>Current number</h3>
-        <p>{{number | json}}</p>
+        <br>
+        <h5>{{ cases[number.case].name }}</h5>        
+        <p>Waited about: {{ diff }} minutes.</p>
     </mat-card>
     <button *ngIf="number" (click)="next()" class="w-100 pt-1 pb-1 mt-2 mb-2" mat-raised-button color="primary" >Next</button>
 

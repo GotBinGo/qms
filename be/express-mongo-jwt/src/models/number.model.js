@@ -30,6 +30,13 @@ const numberSchema = new Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
+  },
+  position: {
+    type: Date
+  },
+  whereToGo: {
+    type: String,
+    default: 'counter',
   }
 }, {
   timestamps: true
