@@ -34,7 +34,7 @@ export class RoleModalComponent implements OnInit {
 
   ok() {
     if (this.model.invalid) {
-      return true;
+      return true; // TODO: ez miert true? (nem tom mit cisnal)
     }
 
     this.loginService.setUser(this.user._id, this.value, this.orgValue).subscribe(x => {
@@ -43,7 +43,6 @@ export class RoleModalComponent implements OnInit {
   }
 
   cancel() {
-    this.dialogRef.close(false);
-
+    this.dialogRef.close(null);
   }
 }

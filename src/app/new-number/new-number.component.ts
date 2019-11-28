@@ -26,6 +26,8 @@ export class NewNumberComponent implements OnInit, OnDestroy {
   number;
   done = false;
 
+  lastSelectedCase;
+
   @Input() login = null;
   @Output() oLogin = new EventEmitter<void>();
   @Output() setTab = new EventEmitter<number>();
@@ -91,6 +93,7 @@ export class NewNumberComponent implements OnInit, OnDestroy {
   }
 
   onNewNumber(n) {
+    this.lastSelectedCase = n;
     this.loginService.getNewNumber(n, this.org).subscribe(x => {
       if (x && !x.errors) {
         this.number = x;
@@ -113,10 +116,15 @@ export class NewNumberComponent implements OnInit, OnDestroy {
 
   cancelNumber() {
     this.loginService.cancelNumber(this.number._id).subscribe(x => {
-      this.loginService.getLatestNumber().subscribe(y => {
+      this.loginService.getLatestNumber(null).subscribe(y => {
         this.number = y;
       });
     });
+  }
+
+  delayNumber() {
+    this.cancelNumber();
+    this.onNewNumber(this.lastSelectedCase);
   }
 
   guest() {

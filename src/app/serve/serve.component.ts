@@ -52,7 +52,7 @@ export class ServeComponent implements OnInit, OnDestroy {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result) {
+      if (result && result.some(x => x.selected)) {
         this.cases = result;
         this.status = 'serving';
       }
