@@ -9,7 +9,7 @@
       <mat-option value="admin">admin</mat-option>
     </mat-select>
   </mat-form-field>
-  <mat-form-field class="w-100" *ngIf="value == 'worker'">
+  <mat-form-field class="w-100">
     <mat-select #org="ngModel" id="org" [(ngModel)]="orgValue" name="org" required="{{ value == 'worker' }}" placeholder="Organization">
       <mat-option *ngFor="let i of objectKeys(orgs)" [value]="orgs[i].org">{{orgs[i].name}}</mat-option>
     </mat-select>

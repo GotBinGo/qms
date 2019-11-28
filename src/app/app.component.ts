@@ -38,7 +38,6 @@ export class AppComponent implements OnInit {
 
   onTabChange (e) {
     this.tab = e.index;
-    console.log(e);
     if (e.index === 1 && this.isLogin) {
       const dialogRef = this.dialog.open(ConfirmModalComponent, {
         width: '80%',

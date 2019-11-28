@@ -117,14 +117,14 @@ export class NewNumberComponent implements OnInit, OnDestroy {
   cancelNumber() {
     this.loginService.cancelNumber(this.number._id).subscribe(x => {
       this.loginService.getLatestNumber(null).subscribe(y => {
-        this.number = y;
+        // this.number = y;
+        this.number = null;
       });
     });
   }
 
   delayNumber() {
-    this.cancelNumber();
-    this.onNewNumber(this.lastSelectedCase);
+    // delay
   }
 
   guest() {

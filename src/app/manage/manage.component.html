@@ -40,15 +40,14 @@
               <div class="mb-2">
                 <mat-chip-list>
                     <h3 class="mr-2">Manage users</h3>
-                    <mat-chip color="">guest</mat-chip>
                     <mat-chip color="primary" selected>user</mat-chip>
                     <mat-chip color="accent" selected>worker</mat-chip>
                     <mat-chip color="warn" selected>admin</mat-chip>
                   </mat-chip-list>
               </div>
               <div class="row" *ngIf="true">
-                <div class="col-12">
-                  <button *ngFor="let i of objectKeys(users)" (click)="onUserSelect(i)" class="w-100 pt-1 pb-1 mt-2 mb-2" mat-raised-button color="{{ users[i].role == 'admin' ? 'warn' : (users[i].role == 'worker' ? 'accent' : (users[i].role == 'user' ? 'primary' : '')) }}" >{{users[i].name}}</button>
+                <div *ngFor="let i of objectKeys(users)" class="col-12">
+                  <button *ngIf="users[i].role != 'guest'" (click)="onUserSelect(i)" class="w-100 pt-1 pb-1 mt-2 mb-2" mat-raised-button color="{{ users[i].role == 'admin' ? 'warn' : (users[i].role == 'worker' ? 'accent' : (users[i].role == 'user' ? 'primary' : '')) }}" >{{users[i].name}}</button>
                 </div>
               </div>
             </div>
