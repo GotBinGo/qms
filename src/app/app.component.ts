@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
-import { LoginService } from './login.service';
+import { ServicesService } from './services.service';
 import { MatDialog } from '@angular/material';
 import { ServeComponent } from './serve/serve.component';
 import { ConfirmModalComponent } from './confirm-modal/confirm-modal.component';
@@ -16,12 +16,12 @@ export class AppComponent implements OnInit {
   isLogin = false;
   role = '-';
 
-  constructor(private loginService: LoginService, public dialog: MatDialog) {
+  constructor(private servicesService: ServicesService, public dialog: MatDialog) {
   }
 
   ngOnInit() {
     this.onTabChange(1);
-    this.loginService.isLogin().subscribe(x => {
+    this.servicesService.isLogin().subscribe(x => {
       this.isLogin = x;
       if (x) {
         this.login(1);
@@ -46,7 +46,7 @@ export class AppComponent implements OnInit {
 
       dialogRef.afterClosed().subscribe(result => {
         if (result) {
-          this.loginService.logout().subscribe(x => {
+          this.servicesService.logout().subscribe(x => {
             this.isLogin = false;
             this.role = '-';
             console.log('logged out');
@@ -68,7 +68,7 @@ export class AppComponent implements OnInit {
   login(e) {
     this.loginSubject.next();
     this.isLogin = true;
-    this.loginService.getUsers().subscribe(a => {
+    this.servicesService.getUsers().subscribe(a => {
       const uid = JSON.parse(atob(localStorage.token.split('.')[1])).sub;
       this.role = a.filter(x => uid === x._id)[0].role;
     });

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginService } from '../login.service';
+import { ServicesService } from '../services.service';
 import { _ } from 'underscore';
 import { TextInputModalComponent } from '../text-input-modal/text-input-modal.component';
 import { MatDialog, MatSnackBar } from '@angular/material';
@@ -11,7 +11,7 @@ import { RoleModalComponent } from '../role-modal/role-modal.component';
 })
 export class ManageComponent implements OnInit {
 
-  constructor(private loginService: LoginService, public dialog: MatDialog, private matSnackBar: MatSnackBar) { }
+  constructor(private servicesService: ServicesService, public dialog: MatDialog, private matSnackBar: MatSnackBar) { }
 
   orgs = [];
   cases = [];
@@ -21,10 +21,10 @@ export class ManageComponent implements OnInit {
   selectedOrgIndex = null;
 
   ngOnInit() {
-    this.loginService.getOrgs().subscribe(a => {
+    this.servicesService.getOrgs().subscribe(a => {
       this.orgs = a;
     });
-    this.loginService.getUsers().subscribe(a => {
+    this.servicesService.getUsers().subscribe(a => {
       this.users = a;
     });
   }
@@ -38,11 +38,11 @@ export class ManageComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.loginService.addOrg(result).subscribe(x => {
+        this.servicesService.addOrg(result).subscribe(x => {
           if (x.err) {
             this.matSnackBar.open('Duplicate organization name.', '', { duration: 2000 });
           } else {
-            this.loginService.getOrgs().subscribe(a => {
+            this.servicesService.getOrgs().subscribe(a => {
               this.orgs = a;
             });
           }
@@ -64,11 +64,11 @@ export class ManageComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.loginService.addCase(this.orgs[this.selectedOrgIndex].org, result, 3).subscribe(x => {
+        this.servicesService.addCase(this.orgs[this.selectedOrgIndex].org, result, 3).subscribe(x => {
           if (x.err) {
             this.matSnackBar.open('Duplicate organization name.', '', { duration: 2000 });
           } else {
-            this.loginService.getCases(this.orgs[this.selectedOrgIndex].org).subscribe(a => {
+            this.servicesService.getCases(this.orgs[this.selectedOrgIndex].org).subscribe(a => {
               this.cases = a;
             });
           }
@@ -83,7 +83,7 @@ export class ManageComponent implements OnInit {
 
   onOrgSelect(i) {
     this.selectedOrgIndex = i;
-    this.loginService.getCases(this.orgs[i].org).subscribe(x => {
+    this.servicesService.getCases(this.orgs[i].org).subscribe(x => {
       this.cases = x;
     });
   }
@@ -107,7 +107,7 @@ export class ManageComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.loginService.getUsers().subscribe(a => {
+        this.servicesService.getUsers().subscribe(a => {
           this.users = a;
         });
       } else {

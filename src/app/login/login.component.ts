@@ -1,5 +1,5 @@
 import { Component, OnInit, setTestabilityGetter, Output, EventEmitter } from '@angular/core';
-import { LoginService } from '../login.service';
+import { ServicesService } from '../services.service';
 
 @Component({
   selector: 'app-login',
@@ -19,13 +19,13 @@ export class LoginComponent implements OnInit {
   regPassword = '';
   regNick = '';
 
-  constructor(private loginService: LoginService) { }
+  constructor(private servicesService: ServicesService) { }
 
   ngOnInit() {
   }
 
   onLogin() {
-    this.loginService.login(this.username, this.password).subscribe((res) => {
+    this.servicesService.login(this.username, this.password).subscribe((res) => {
       if (!res.errors) {
         localStorage.token = res.token;
         this.setTab.emit(0);
@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
   }
 
   onRegister() {
-    this.loginService.register(this.regUsername, this.regPassword, this.regNick).subscribe((res) => {
+    this.servicesService.register(this.regUsername, this.regPassword, this.regNick).subscribe((res) => {
       this.username = this.regUsername;
       this.password = this.regPassword;
       this.onLogin();

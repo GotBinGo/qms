@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject, ViewChild } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { LoginService } from '../login.service';
+import { ServicesService } from '../services.service';
 import { NgModel } from '@angular/forms';
 
 @Component({
@@ -10,7 +10,7 @@ import { NgModel } from '@angular/forms';
 })
 export class RoleModalComponent implements OnInit {
 
-  constructor(public dialogRef: MatDialogRef<any>, @Inject(MAT_DIALOG_DATA) public data: any, private loginService: LoginService) { }
+  constructor(public dialogRef: MatDialogRef<any>, @Inject(MAT_DIALOG_DATA) public data: any, private servicesService: ServicesService) { }
   objectKeys = Object.keys;
 
   title;
@@ -37,7 +37,7 @@ export class RoleModalComponent implements OnInit {
       return true; // TODO: ez miert true? (nem tom mit cisnal)
     }
 
-    this.loginService.setUser(this.user._id, this.value, this.orgValue).subscribe(x => {
+    this.servicesService.setUser(this.user._id, this.value, this.orgValue).subscribe(x => {
       this.dialogRef.close(true);
     });
   }

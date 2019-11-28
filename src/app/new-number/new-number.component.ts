@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
-import { LoginService } from '../login.service';
+import { ServicesService } from '../services.service';
 import { FormControl } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -10,7 +10,7 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./new-number.component.css']
 })
 export class NewNumberComponent implements OnInit, OnDestroy {
-  constructor(private loginService: LoginService, private matSnackBar: MatSnackBar, private route: Router, private ar: ActivatedRoute) { }
+  constructor(private servicesService: ServicesService, private matSnackBar: MatSnackBar, private route: Router, private ar: ActivatedRoute) { }
   dot = '.';
   endingControl = new FormControl('');
   name = '';
@@ -47,14 +47,14 @@ export class NewNumberComponent implements OnInit, OnDestroy {
 
     this.timer = setInterval(_ => {
       if (this.login && (this.number || this.number === undefined)) {
-        this.loginService.getLatestNumber(this.number ? this.number._id : null).subscribe(x => {
+        this.servicesService.getLatestNumber(this.number ? this.number._id : null).subscribe(x => {
           this.number = x;
           if (x && x.status === 'done') {
             this.done = true;
           }
         });
         if (this.orgs.length === 0) {
-          this.loginService.getOrgs().subscribe(a => {
+          this.servicesService.getOrgs().subscribe(a => {
             this.orgs = a;
             setTimeout(x => {
               if (this.route.url === '/') {
@@ -87,14 +87,14 @@ export class NewNumberComponent implements OnInit, OnDestroy {
     }
     this.org = n;
     this.route.navigate(['/', this.orgs[this.org].org]);
-    this.loginService.getCases(this.orgs[this.org].org).subscribe(x => {
+    this.servicesService.getCases(this.orgs[this.org].org).subscribe(x => {
       this.cases = x;
     });
   }
 
   onNewNumber(n) {
     this.lastSelectedCase = n;
-    this.loginService.getNewNumber(n, this.org).subscribe(x => {
+    this.servicesService.getNewNumber(n, this.org).subscribe(x => {
       if (x && !x.errors) {
         this.number = x;
       } else {
@@ -115,8 +115,8 @@ export class NewNumberComponent implements OnInit, OnDestroy {
   }
 
   cancelNumber() {
-    this.loginService.cancelNumber(this.number._id).subscribe(x => {
-      this.loginService.getLatestNumber(null).subscribe(y => {
+    this.servicesService.cancelNumber(this.number._id).subscribe(x => {
+      this.servicesService.getLatestNumber(null).subscribe(y => {
         // this.number = y;
         this.number = null;
       });
@@ -128,7 +128,7 @@ export class NewNumberComponent implements OnInit, OnDestroy {
   }
 
   guest() {
-    this.loginService.guest().subscribe((res) => {
+    this.servicesService.guest().subscribe((res) => {
       if (!res.errors) {
         localStorage.token = res.token;
         this.oLogin.emit();

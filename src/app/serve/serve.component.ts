@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { LoginService } from '../login.service';
+import { ServicesService } from '../services.service';
 import { CasePickerModalComponent } from '../case-picker-modal/case-picker-modal.component';
 import { MatDialog } from '@angular/material';
 
@@ -10,7 +10,7 @@ import { MatDialog } from '@angular/material';
 })
 export class ServeComponent implements OnInit, OnDestroy {
 
-  constructor(private loginService: LoginService, public dialog: MatDialog) { }
+  constructor(private servicesService: ServicesService, public dialog: MatDialog) { }
   objectKeys = Object.keys;
   users;
   user;
@@ -23,11 +23,11 @@ export class ServeComponent implements OnInit, OnDestroy {
   status = 'start';
 
   ngOnInit() {
-    this.loginService.getUsers().subscribe(a => {
+    this.servicesService.getUsers().subscribe(a => {
       this.users = a;
       const uid = JSON.parse(atob(localStorage.token.split('.')[1])).sub;
       this.user = a.filter(x => uid === x._id)[0];
-      this.loginService.getCases(this.user.org).subscribe(x => {
+      this.servicesService.getCases(this.user.org).subscribe(x => {
         this.cases = x;
       });
     });
@@ -35,7 +35,7 @@ export class ServeComponent implements OnInit, OnDestroy {
     this.timer = setInterval(_ => {
       // serve
       if (this.status === 'serving' && !this.number) {
-        this.loginService.getNextNumber(this.user.org, this.cases.filter(x => x.selected).map(x => x.case)).subscribe(x => {
+        this.servicesService.getNextNumber(this.user.org, this.cases.filter(x => x.selected).map(x => x.case)).subscribe(x => {
           if (x) {
             this.number = x;
           }
@@ -66,7 +66,7 @@ export class ServeComponent implements OnInit, OnDestroy {
   }
 
   next() {
-    this.loginService.cancelNumber(this.number._id).subscribe(x => {
+    this.servicesService.cancelNumber(this.number._id).subscribe(x => {
       this.number = null;
     });
   }

@@ -5,7 +5,7 @@ import { Observable, of, BehaviorSubject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class LoginService {
+export class ServicesService {
 
   constructor(private http: HttpClient) {
   }
