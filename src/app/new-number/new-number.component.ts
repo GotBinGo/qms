@@ -113,7 +113,7 @@ export class NewNumberComponent implements OnInit, OnDestroy {
 
   cancelNumber() {
     this.loginService.cancelNumber(this.number._id).subscribe(x => {
-      this.loginService.getLatestNumber().subscribe(y => {
+      this.loginService.getLatestNumber(null).subscribe(y => {
         this.number = y;
       });
     });
