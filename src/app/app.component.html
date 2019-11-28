@@ -1,5 +1,5 @@
 <mat-tab-group (selectedTabChange)="onTabChange($event)" [selectedIndex]="tab == 0 ? 0 : (tab || 0)" class="demo-tab-group lastright" dynamicHeight>
-  <mat-tab>
+  <mat-tab *ngIf="role === 'user' || role === 'guest' || role === '-'">
     <ng-template mat-tab-label>
       <div class="nav-bar-label">Get a Number</div>
     </ng-template>
@@ -7,23 +7,25 @@
       <app-new-number [login]="isLogin" (oLogin)="login($event)" (setTab)="setTab($event)"></app-new-number>
     </ng-template>
   </mat-tab>
-  <mat-tab *ngIf="isLogin">
+
+  <mat-tab *ngIf="isLogin && role === 'admin'">
     <ng-template mat-tab-label>
       <div class="nav-bar-label">Manage</div>
     </ng-template>
     <ng-template matTabContent>
       <app-manage></app-manage>
     </ng-template>
-</mat-tab>
-  <mat-tab *ngIf="isLogin">
+  </mat-tab>
+
+  <mat-tab *ngIf="isLogin && role === 'worker'">
     <ng-template mat-tab-label>
       <div class="nav-bar-label">Serve</div>
     </ng-template>
     <ng-template matTabContent>
       <app-serve></app-serve>
     </ng-template>
-
   </mat-tab>
+
   <mat-tab>
     <ng-template mat-tab-label>
       <mat-icon *ngIf="isLogin" class="qms-tab-icon">exit_to_app</mat-icon>
