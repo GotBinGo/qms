@@ -22,7 +22,8 @@ exports.register = async (req, res, next) => {
 
 exports.guest = async (req, res, next) => {
   try {
-    const body = {email: Math.random() + '@a.ic.hu', name: 'guest', password: '123123'};
+    const rnd = Math.random();
+    const body = {email: rnd + '@a.ic.hu', name: rnd + 'guest', password: '123123'};
     const rUser = new User(body)
     const savedUser = await rUser.save()
 
