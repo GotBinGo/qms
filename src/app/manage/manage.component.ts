@@ -29,6 +29,15 @@ export class ManageComponent implements OnInit {
     });
   }
 
+  tabChange() {
+    this.servicesService.getOrgs().subscribe(a => {
+      this.orgs = a;
+    });
+    this.servicesService.getUsers().subscribe(a => {
+      this.users = a;
+    });
+  }
+
   add() {
     const dialogRef = this.dialog.open(TextInputModalComponent, {
       width: '80%',

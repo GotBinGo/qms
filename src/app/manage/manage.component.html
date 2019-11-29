@@ -3,7 +3,7 @@
 <div class="mt-4">
   <mat-card class="vertical-center p-1" style="max-width: 800px;">
     <div class="vertical-center white" style="max-width: 800px;">
-      <mat-tab-group>
+      <mat-tab-group (selectedIndexChange)="tabChange()">
         <mat-tab class="" label="Organizations">
           <div class="p-4" *ngIf="selectedOrgIndex === null">
             <div>
