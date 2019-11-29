@@ -29,7 +29,7 @@
       </div>
 
       <div class="row" *ngIf="org">
-        <div class="col-12">
+        <div *ngIf="cases && cases.length" class="col-12">
           <p *ngIf="!objectKeys(cases).length" class="w-100 mt-3">No cases here.</p>
           <button *ngFor="let i of objectKeys(cases)" (click)="onNewNumber(cases[i].case)" class="w-100 pt-1 pb-1 mt-2 mb-2" mat-raised-button color="primary" >{{cases[i].name}}</button>
         </div>
@@ -46,6 +46,7 @@
 <div class="" *ngIf="number && login">
   <mat-card *ngIf="!reading && !done" class="mt-1 vertical-center" style="max-width: 800px;">
     <h4 class="mb-3 mt-3">You are waiting in line</h4>
+    <h4 *ngIf="number && number.status && cases && cases.length" class="mb-3 mt-3">Your case: {{cases[number.case].name}}</h4>
     <h4 *ngIf="number && number.status && number.status == 'waiting'" class="mb-3 mt-3">Please Wait!</h4>
     <h4 *ngIf="number && number.status && number.status == 'waiting' && number.timeToGo" class="mb-3 mt-3">About {{number.timeToGo * 5}} minutes to go.</h4>
     <h4 *ngIf="number && number.status && number.status == 'waiting' && !number.timeToGo" class="mb-3 mt-3">You are about to be called.</h4>

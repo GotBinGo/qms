@@ -10,7 +10,10 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./new-number.component.css']
 })
 export class NewNumberComponent implements OnInit, OnDestroy {
-  constructor(private servicesService: ServicesService, private matSnackBar: MatSnackBar, private route: Router, private ar: ActivatedRoute) { }
+  constructor(private servicesService: ServicesService,
+    private matSnackBar: MatSnackBar,
+    private route: Router,
+    private ar: ActivatedRoute) { }
   dot = '.';
   endingControl = new FormControl('');
   name = '';
@@ -19,7 +22,7 @@ export class NewNumberComponent implements OnInit, OnDestroy {
   torch = false;
 
   objectKeys = Object.keys;
-  cases = ['Útlevél', 'Csekk Befizetés', 'Dokumentum Átvétel'];
+  cases = [];
   orgs = [];
 
   org;
