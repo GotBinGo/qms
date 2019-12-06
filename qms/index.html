@@ -1,0 +1,226 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/night.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+		<style>
+		h1.ttn, h2.ttn, h3.ttn, h4.ttn { text-transform: none; }
+		img.noborder {border: 0 !important; box-shadow: none !important; background: transparent!important; }
+		.text-center { text-align: center!important; }
+		.text-left { text-align: left!important; }
+		.print-pdf .reveal img, .print-pdf .reveal video, .print-pdf .reveal iframe {
+			max-width: 800px;
+			max-height: 600px;
+		}
+		</style>
+	</head>
+	<body>
+		<div class="reveal" style="font-size: 28px;">
+			<div class="slides">
+				<section class="center" >
+					<h2 class="ttn">Sorszámkövető alkalmazás<h2>
+					<h3 class="ttn"><a href="#">Bordák Tamás</a>, <a href="#">Fridvalszky András</a></h3>
+					<h2>-</h2>
+					<h4 class="ttn">Szoftverarchitektúrák </h4>
+					<h4 class="ttn">Konzulens: Tóth Tibor</h4>
+				</section>
+				<section>
+					<h2>A választott téma</h2>
+					<div class="text-left">
+						<h3>Motiváció</h3>
+						<ul>
+							<li>Várakozási idő csökkentése</li>
+							<li>Jelenlét nélkül követhető a sor haladása</li>
+							<li>Egységes rendszer: Posta, Kormányablak...</li>
+							<li>Papír sorszámok kiváltása (környezettudatosság)</li>
+						</ul>
+						<!--<p class="fragment">Manapság mindenki használ csevegőalkalmazásokat</p>
+						<p class="fragment">DE vajon tudjuk-e, hogy kire bízzuk a legbelsőbb titkainkat</p>-->
+						<br>
+						<br>
+						<h3>Felmerülő kérdés:</h3>
+						<div>
+							<ul>							
+								<li>Csak okoseszközzel használható?</li>
+							</ul>
+						</div>
+					</div>
+				</section>
+				<section class="text-left">
+					<h2>Funkciók</h2>
+					<ul>
+						<li>
+							Ügyfél
+							<ul>
+								<li>Sorszám kérése</li>
+								<li>Sorszám nyomonkövetése</li>
+								<li>Sorszám halasztása</li>
+								<li>Sorszám törlése</li>
+							</ul>
+						</li>
+						<br>
+						<li>
+							Ügyintéző
+							<ul>
+								<li>Sorszámok bekérése</li>
+							</ul>
+						</li>
+						<br>
+						<li>
+							Üzletvezető
+							<ul>
+								<li>Felhasználói jogosultságok kezelése (szerepek)</li>
+								<li>Itézmény hierarchia menedzselése</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Funkciók</h2>
+					<table>
+						<tr>
+							<td><img class="noborder" src="img/usecase.png" alt="FB Messenger"></td>
+						</tr>
+					</table>
+					<br>
+				</section>
+				<section class="text-left">
+					<h2>Hierarchia</h2>
+					<table>
+						<tr>
+							<td><img class="noborder" src="img/hier.png" alt="FB Messenger"></td>
+						</tr>
+					</table>
+				</section>
+				<section>
+					<h2>Architektúra</h2>
+					<table>
+						<tr>
+							<td><img style="height: 80%;" class="noborder" src="img/arch.png" alt="FB Messenger"></td>
+						</tr>
+					</table>
+				</section>
+				<section>
+					<h2>Belépés</h2>
+					<table>
+						<tr>
+							<td><img style="height: 80%;" class="noborder" src="img/guest.png" alt="FB Messenger"></td>
+						</tr>
+					</table>
+				</section>
+				<section>
+					<h2>Regisztráció</h2>
+					<table>
+						<tr>
+							<td><img style="height: 80%;" class="noborder" src="img/reg.png" alt="FB Messenger"></td>
+						</tr>
+					</table>
+				</section>
+				<section>
+					<h2>Organizáció</h2>
+					<table>
+						<tr>
+							<td><img style="height: 80%;" class="noborder" src="img/org-pick.png" alt="FB Messenger"></td>
+						</tr>
+					</table>
+				</section>
+				<section>
+					<h2>Ügyek</h2>
+					<table>
+						<tr>
+							<td><img style="height: 80%;" class="noborder" src="img/case-pick.png" alt="FB Messenger"></td>
+						</tr>
+					</table>
+				</section>
+				<section>
+					<h2>Sorszám</h2>
+					<table>
+						<tr>
+							<td><img style="height: 80%;" class="noborder" src="img/number.png" alt="FB Messenger"></td>
+						</tr>
+					</table>
+				</section>
+				<section>
+					<h2>Kezelés</h2>
+					<table>
+						<tr>
+							<td><img style="height: 80%;" class="noborder" src="img/manage.png" alt="FB Messenger"></td>
+						</tr>
+					</table>
+				</section>
+				<section>
+					<h2>Kiszolgálás</h2>
+					<table>
+						<tr>
+							<td><img style="height: 50%;" class="noborder" src="img/serving.png" alt="FB Messenger"></td>
+						</tr>
+					</table>
+				</section>
+				<section>
+					<table>
+						<tr  class="noborder">
+							<td>
+								<img class="noborder" height="300" src="img/angular.png" alt="Menü">
+							</td>
+							<td>
+									<img class="noborder" height="300" src="img/ts.png" alt="Publikus kulcs">
+							</td>
+							
+						</tr>
+						<tr class="noborder">
+							<td>
+								<img class="noborder" height="300" src="img/node.png" alt="Barát felvétele">
+							</td>
+							<td>
+									<img class="noborder" height="300" src="img/mongo.png" alt="Publikus kulcs">
+							</td>
+						</tr>
+					</table>
+				</section>
+
+				<section>
+					<h2>Köszönjük a figyelmet!</h2>
+				</section>
+				<!-- <section>
+					<h2>Továbbfejlesztési lehetőségek</h2>
+						<ul>
+							<li>Több kulcs használata, különböző célokra!</li>
+							<li>Forward secrecy (kliens kompromitálódása esetén)</li>
+							<li>Future secrecy ("önjavító" eljárás)</li>
+							<li>Felületi javítások (kényelmesebb felhasználói élmány)</li>
+							<li>Médiatartalmak támogatása (kép, videó, stb.. küldése)</li>
+						</ul>
+				</section> -->
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				history: true,
+			});
+		</script>
+	</body>
+</html>
