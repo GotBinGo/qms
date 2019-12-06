@@ -1,38 +1,41 @@
+
+
 <!doctype html>
-<html>
+<html lang="en">
+
 	<head>
 		<meta charset="utf-8">
+
+		<title>rnning in circles prezentáció</title>
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
-
-		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/night.css">
+		<link rel="stylesheet" href="https://revealjs.com/css/reveal.css">
+		<!--<link rel="stylesheet" href="https://revealjs.com/css/theme/black.css" id="theme">-->
+		<link rel="stylesheet" href="https://revealjs.com/css/theme/night.css" id="theme">
 
 		<!-- Theme used for syntax highlighting of code -->
-		<link rel="stylesheet" href="lib/css/zenburn.css">
+		<link rel="stylesheet" href="https://revealjs.com/lib/css/zenburn.css">
 
 		<!-- Printing and PDF exports -->
 		<script>
 			var link = document.createElement( 'link' );
 			link.rel = 'stylesheet';
 			link.type = 'text/css';
-			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'https://revealjs.com/css/print/pdf.css' : 'https://revealjs.com/css/print/paper.css';
 			document.getElementsByTagName( 'head' )[0].appendChild( link );
 		</script>
-		<style>
-		h1.ttn, h2.ttn, h3.ttn, h4.ttn { text-transform: none; }
-		img.noborder {border: 0 !important; box-shadow: none !important; background: transparent!important; }
-		.text-center { text-align: center!important; }
-		.text-left { text-align: left!important; }
-		.print-pdf .reveal img, .print-pdf .reveal video, .print-pdf .reveal iframe {
-			max-width: 800px;
-			max-height: 600px;
-		}
-		</style>
+
 	</head>
+
 	<body>
-		<div class="reveal" style="font-size: 28px;">
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
 				<section class="center" >
 					<h2 class="ttn">Sorszámkövető alkalmazás<h2>
@@ -198,29 +201,42 @@
 				<section>
 					<h2>Köszönjük a figyelmet!</h2>
 				</section>
-				<!-- <section>
-					<h2>Továbbfejlesztési lehetőségek</h2>
-						<ul>
-							<li>Több kulcs használata, különböző célokra!</li>
-							<li>Forward secrecy (kliens kompromitálódása esetén)</li>
-							<li>Future secrecy ("önjavító" eljárás)</li>
-							<li>Felületi javítások (kényelmesebb felhasználói élmány)</li>
-							<li>Médiatartalmak támogatása (kép, videó, stb.. küldése)</li>
-						</ul>
-				</section> -->
+
+
 			</div>
+
 		</div>
 
-		<script src="lib/js/head.min.js"></script>
-		<script src="js/reveal.js"></script>
+		<!-- Scripts -->
+
+		<script src="https://revealjs.com/lib/js/head.min.js"></script>
+		<script src="https://revealjs.com/js/reveal.js"></script>
 
 		<script>
-			// More info about config & dependencies:
-			// - https://github.com/hakimel/reveal.js#configuration
-			// - https://github.com/hakimel/reveal.js#dependencies
+
+			// More info https://github.com/hakimel/reveal.js#configuration
 			Reveal.initialize({
+				controls: true,
+				progress: true,
 				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: 'https://revealjs.com/' + 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'https://revealjs.com/' + 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'https://revealjs.com/' + 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'https://revealjs.com/' + 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'https://revealjs.com/' + 'plugin/search/search.js', async: true },
+					{ src: 'https://revealjs.com/' + 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'https://revealjs.com/' + 'plugin/notes/notes.js', async: true }
+				]
 			});
+
 		</script>
+
 	</body>
 </html>
+

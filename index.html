@@ -1,0 +1,184 @@
+
+
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>rnning in circles prezentáció</title>
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="https://revealjs.com/css/reveal.css">
+		<!--<link rel="stylesheet" href="https://revealjs.com/css/theme/black.css" id="theme">-->
+		<link rel="stylesheet" href="https://revealjs.com/css/theme/night.css" id="theme">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="https://revealjs.com/lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'https://revealjs.com/css/print/pdf.css' : 'https://revealjs.com/css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h2>rnning in circles</h2>
+					<h4>Zenei ajánló rendszer</h4>
+					<p>
+						<small><a href="#">Bordák Tamás</a>, <a href="#">Henczidai Bálint</a></small>
+					</p>
+				</section>
+				
+				<section>
+					<h3>Tervek, feladat</h3>
+					<p>
+						- <span>szeretjük a zenéket :)</span><br>
+						- <span>ajánló rendszerek megismerése</span>
+					</p>
+					<p>||<br>V</p>
+					<p>
+					Kaggle - KKBox Music Recommendation
+					</p>
+				</section>
+				
+				<section>
+					<h3>Lépésről lépésre</h3>
+					<ul>
+						<li>ajánlási technikák megismerése</li>
+						<li>adatok letöltése, előfeldolgozása</li>
+						<li>hálózat megtervezése, implementálása</li>
+						<li>tanítás, javítás</li>
+						<li>kiértékelés, optimalizáció</li>
+					</ul>
+				</section>
+
+				<section>
+					<section>
+						<h3>Tématerület megismerése</h3>
+						<p>Google, YouTube, Amazon, Netflix, Last.fm</p>
+					</section>
+					<section>						
+						<ul>
+							<li>mátrix faktorizáció</li>
+							<li>hasonlóság alapú</li>
+							<li>valószínűségi modellek</li>
+							<li>gépi tanulás</li>
+						</ul>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h3>Megvalósítás</h3>
+					</section>
+					<section>
+						<h3>Lineáris Regrsszio</h3>
+						<ul>
+							<li>Keras</li>
+							<li>Embedding az entitásoknak</li>
+							<li>Dense layer a kiértékeléshez</li>
+							<li>Hasonlóság alapon</li>
+						</ul>
+					</section>
+					<section>
+						<h3>Gradiens Boostolás</h3>
+						<ul>
+							<li>LightGBM</li>
+							<li>Kevés adatra jelentősen jobb</li>
+							<li>Feature engineering nagyon fontos</li>
+							<li>Gyorsabb tanítás, hatékonyabb reprezentáció</li>
+						</ul>
+					</section>
+					<section>
+						<h3>Hibrid renszerek</h3>
+						<ul>
+							<li>Saját próbálkozás</li>
+							<li>LightFM</li>
+							<li>Speciális loss function</li>
+							<li>Beágyazás minden feature-re</li>
+						</ul>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h3>Vizualizáció</h3>
+							<ul>
+								<li>Dimenzió redukció</li>
+								<li>Érdekesség, tanulás kiértékelésére</li>
+							</ul>
+								<img src="vis.png"></img>
+					</section>
+             		<section>
+                	    <h3>Felfedezés fa</h3>
+                    	    <ul>
+                        	    <li>Ajánlás a kedvelt tartalom alapján</li>
+                        	</ul>
+                           		<img src="tree.png"></img>
+                	</section>
+                </section>
+
+				<section>
+                    <h3>Alkalmazás</h3>
+					<ul>
+						<img src="rec.png"></img>
+					</ul>
+				</section>
+				<section style="text-align: left;">
+					<h1>VÉGE</h1>
+					<h3>Köszönjük a figyelmet</h3>
+				</section>
+
+
+			</div>
+
+		</div>
+
+		<!-- Scripts -->
+
+		<script src="https://revealjs.com/lib/js/head.min.js"></script>
+		<script src="https://revealjs.com/js/reveal.js"></script>
+
+		<script>
+
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: 'https://revealjs.com/' + 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'https://revealjs.com/' + 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'https://revealjs.com/' + 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'https://revealjs.com/' + 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'https://revealjs.com/' + 'plugin/search/search.js', async: true },
+					{ src: 'https://revealjs.com/' + 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'https://revealjs.com/' + 'plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
+
