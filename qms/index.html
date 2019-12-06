@@ -28,12 +28,21 @@
 			link.href = window.location.search.match( /print-pdf/gi ) ? 'https://revealjs.com/css/print/pdf.css' : 'https://revealjs.com/css/print/paper.css';
 			document.getElementsByTagName( 'head' )[0].appendChild( link );
 		</script>
-
+		<style>
+			h1.ttn, h2.ttn, h3.ttn, h4.ttn { text-transform: none; }
+			img.noborder {border: 0 !important; box-shadow: none !important; background: transparent!important; }
+			.text-center { text-align: center!important; }
+			.text-left { text-align: left!important; }
+			.print-pdf .reveal img, .print-pdf .reveal video, .print-pdf .reveal iframe {
+				max-width: 800px;
+				max-height: 600px;
+			}
+			</style>
 	</head>
 
 	<body>
 
-		<div class="reveal">
+		<div class="reveal" style="font-size: 28px;">
 
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
